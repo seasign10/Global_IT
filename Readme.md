@@ -1,7 +1,7 @@
 # Readme
 
-- 글로벌아이티 인재개발원 K-Digital-Traning 학습
+- 글로벌아이티 인재개발원 K-Digital-Traning 학습 기록
 
-> 01_html+css
+> :page_with_curl: 01_html+css
 >
-> 02
+> :page_with_curl: 02_
