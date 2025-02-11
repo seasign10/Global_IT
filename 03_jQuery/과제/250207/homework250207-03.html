@@ -438,22 +438,28 @@
     }
 
 
-    // 비밀번호 설명 텍스트 (수정 중)
+    // 비밀번호 설명 텍스트
+    let isClickedPwd = false;
+    let isClickedPwdChk = false;
     const checkPwd = ()=>{
       const inputField1 = document.querySelector("#upwd");
       const inputField2 = document.querySelector("#upwdChk");
 
-      // inputField1.addEventListener("click", ()={
-      //   isClickedPwd = true;
-      // });
-      // inputField2.addEventListener("click", ()={
-      //   isClickedPwdChk = true;
-      // });
+      inputField1.addEventListener("click", ()=>{
+        if(!isClickedPwd){
+          alertPwd = document.querySelector(".alert-pwd");
+          pwdFocus();
+          isClickedPwd = true;
+        }
+      });
+      inputField2.addEventListener("click", ()=>{
+        if(!isClickedPwdChk){
+          alertPwdChk = document.querySelector(".alert-pwd-chk");
+          pwdChkFocus();
+          isClickedPwdChk = true;
+        }
+      });
 
-      const pwdInput = inputCont[1].querySelector(".input-field");
-      const pwdChkInput = inputCont[2].querySelector(".input-field");
-      alertPwd = document.querySelector(".alert-pwd");
-      alertPwdChk = document.querySelector(".alert-pwd-chk");
       const pwdFocus = ()=> {
         alertPwd.style.color = "gray";
         alertPwd.innerHTML = `
@@ -468,27 +474,8 @@
         <p><i class="fa-solid fa-xmark"></i>확인을 위해 새 비밀번호를 다시 입력해주세요.</p>
         `;
       };
-      console.log(inputCont[1].style.borderBottom);
-      console.log(inputCont[2].style.borderBottom);
-      
-      if(!alertPwd.innerText.trim()){
-        if(inputCont[1].style.borderBottom == "2px solid red"){
-          console.log("in");
-        };
-        pwdInput.addEventListener("click", pwdFocus);
-      }else{
-        // 이벤트 해제
-        pwdInput.removeEventListener("click", pwdFocus);
-      }
-      if(!alertPwdChk.innerText.trim()){
-        if(inputCont[2].style.borderBottom == "2px solid red") return;
-        pwdChkInput.addEventListener("click", pwdChkFocus);
-      }else{
-        // 이벤트 해제
-        pwdChkInput.removeEventListener("click", pwdChkFocus);
-      }
     };
-    // checkPwd();
+    checkPwd();
     </script>
   </div>
 </body>

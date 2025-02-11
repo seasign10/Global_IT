@@ -2,7 +2,7 @@
 
 - 글로벌아이티 인재개발원 K-Digital-Traning 학습 기록
 
-> :open_file_folder: 00. 00.certificate
+> :open_file_folder: 00.certificate
 >
 > - 자격증 study
 >

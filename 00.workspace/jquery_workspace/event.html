@@ -4,8 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>event</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#btn1").click(function(){
+        console.log("btn1");
+      });
+      $("#btn2").on("click", function(){
+        console.log("btn2");
+      });
+      $("#btn3").on({
+        // click 이벤트를 설정(다중 적용 가능)
+        mouseenter: function(){
+          $("#text").text("btn3 mouseenter");
+        },
+        mouseleave: function(){
+          $("#text").text("btn3 mouseleave");
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-  
+  <button id="btn1">btn1</button>
+  <button id="btn2">btn2</button>
+  <button id="btn3">btn3</button>
+  <div id="text"></div>
 </body>
 </html>
