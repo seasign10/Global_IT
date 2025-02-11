@@ -1,0 +1,142 @@
+    /* font */
+    @font-face {
+      font-family: "Jeju Gothic KR";
+      src: url("../font/JejuGothic.ttf");
+    }
+    @font-face {
+      font-family: "Jeju Myungjo KR";
+      src: url("/font/JejuMyungjo.ttf");
+    }
+    @font-face {
+      font-family: "Jeju Hallasan KR";
+      src: url("../font/JejuHallasan.ttf");
+    }
+    
+    /* body */
+    body {
+      font-family: "Jeju Myungjo KR", sans-serif;
+      font-size: 16px;
+    }
+    h3 {
+      margin-bottom: 4rem;
+    }
+    .bg-1 {
+      background-color: #121927;
+      color: #ffffff;
+    }
+    .bg-2 {
+      background-color: #f2f2f2;
+      color: #000000;
+    }
+    .bg-3 {
+      background: linear-gradient(to top, #f2f2f2, #121927 80%);
+      color: #ffffff;
+    }
+    .bg-4 {
+      background-color: #121927;
+      color: #ffffff;
+    }
+    .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+
+    /* navigat */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      border-radius: 0;
+      padding: 1rem 0;
+      letter-spacing: 5px;
+    }
+    .navbar-nav li a:hover {
+      font-weight: 700 !important;
+    }
+
+    /* intro */
+    #intro {
+      margin-top: 50px;
+    }
+    #intro img {
+      margin: 2rem 0 1rem 0;
+    }
+
+    /* about */
+  
+    #about img {
+      margin: 2rem;
+    }
+    .container-fluid a {
+      margin: 2rem auto;
+    }
+
+    /* portfolio */
+    .img_where {
+      border-radius: 12px;
+    }
+    .row>div {
+      margin: 2rem 0;
+    }
+    .btn_box {
+      text-align: end;
+    }
+    .btn_box>a {
+      margin: 1rem 0.5rem;
+      background: #1f1d27;
+      color: #fff;
+      border: none;
+    }
+    .pjt_title {
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .label-date {
+      vertical-align: middle;
+      line-height: 24px;
+      padding: 1px 7px;
+      background: #ffffff21;
+      border: 1px solid #5f5e5e;
+      border-radius: 20px;
+    }
+    .label-pjt {
+      color: black;
+      line-height: 24px;
+      font-size: 12px !important;
+      border-radius: 30px;
+      padding: 6px 8px;
+    }
+    /* modal */
+    .modal {
+      text-align: center;
+      color: black;
+    }
+    .modal-footer>a {margin: 0;}
+    .modal-footer>a:nth-child(1) {background-color: #dbd9df; color: black;}
+    .modal-footer>a:nth-child(2) {background-color: black; color: white;}
+    .modal-footer>a:nth-child(1):hover {color: #dbd9df;background-color: rgb(116, 116, 116);}
+    .modal-footer>a:nth-child(2):hover {color: white;background-color: #313131;}
+
+    /* contact */
+    #contact {
+      text-align: center;
+      padding-bottom: 100px;
+    }
+    #contact a {
+      text-decoration: none;
+      color: white;
+      background: #000;
+      padding: 1rem;
+      border: 1px solid #000;
+    }
+    #contact a:hover {
+      background: #fff;
+      color: #000;
+    }
+    #contact .contact-box {
+      margin-top: 3rem;
+    }

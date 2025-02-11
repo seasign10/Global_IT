@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>addClass활용</title>
+    <link href="css/animate.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      div{ height: 1000px;}
+    </style>
+    <script>
+      $(document).ready(function () {
+        // $("#box2>h1").addClass("animate__animated").addClass("animate__bounce");
+
+        // window에서 scroll 이벤트 처리
+        $(window).scroll(function(){
+          // console.log($(window).scrollTop());
+          // if($(window).scrollTop()>600){
+          //   $("#box2>h1").addClass("animate__animated").addClass("animate__fadeInLeft");
+          // }
+
+          var scrollPosition = $(window).scrollTop(); // 현재 스크롤 위치
+          var targetOffset = $('#box2>h1').offset().top; // #box2>h1 의 상단 위치
+
+          // 현재 스크롤 위치
+          console.log("widnodw.scrollTop : "+$(window).scrollTop());
+          // 윈도우(브라우저)의 높이
+          console.log("widown.height : "+$(window).height());
+          // #box2>h1의 상단 위치
+          console.log("targetOffset : "+targetOffset);
+          // #box2>h1의 높이
+          console.log("#box2>h1.height : "+$('#box2>h1').height());
+
+          // #box2>h1가 화면에 나타날 때 애니메이션 적용
+          // 현재위치+브라우저의 높이 > 상단높이 + 콘텐트의 높이 == (h1이 온전히 브라우저에 드러났을 때)
+          if (scrollPosition + $(window).height() > targetOffset+$('#box2>h1').height()) {
+              $('#box2>h1').addClass("animate__animated").addClass("animate__fadeInLeft");
+          } 
+
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="box1">
+      <h1>Scroll Animation</h1>
+    </div>
+    <div id="box2">
+      <h1 style="opacity: 0;height:300px;background: red;">jQuery Scroll Animation with animate.css</h1>
+    </div>
+    <div id="box3">
+      <h1>addClass + animate.css</h1>
+    </div>
+  </body>
+</html>

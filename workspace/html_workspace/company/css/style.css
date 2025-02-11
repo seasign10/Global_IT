@@ -1,0 +1,57 @@
+/* font */
+@font-face {
+  font-family: 'gyeonggi batang';
+  src: url('/font/경기천년바탕_Regular.ttf') format('truetype');
+}
+/* basic */
+body {font-family: 'gyeonggi batang', sans-serif;}
+[class*=container] h3 {
+  margin: 3rem auto;
+}
+
+/* navbar */
+.navbar {
+  letter-spacing: 4px;
+  opacity: 0.9;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* container */
+.container {padding: 80px 120px;}
+
+/* carousel */
+.carousel-inner {/* filter: grayscale(90%); */ width: 100%;}
+.carousel-caption {top: 100px;}
+.img-border {
+  border: 10px solid transparent;
+  margin-bottom: 25px;
+  width: 80%;
+  height: 80%;
+  opacity: 0.7;
+  margin: 0 auto 25px auto;
+}
+.img-border:hover {border-color: #f1f1f1;}
+.row [class|=col] {text-align: center;}
+.item .carousel-caption {opacity: 0;}
+.item.active .carousel-caption{animation: fadeIn 1s;opacity: 1;}
+/* translate를 사용하는것이 left보다 안정적 */
+@keyframes fadeIn {
+  from {opacity: 0;left: 0;}
+  to {opacity: 1;left: 20%;}
+}
+
+/* contact */
+#contact {margin-top: 3rem;}
+
+/* footer */
+footer {background-color: #2d2d30;color: #f5f5f5;padding: 32px;}
+footer a {color: #f5f5f5;}
+footer a:hover {color: #777;text-decoration: none;}
+
+/* 반응형--------------------------------- */
+@media screen and (max-width: 767px) {
+  #contact textarea {margin-top: 2rem;}
+  .carousel-caption p {display: none;}
+  .container {padding: 70px 10%}
+}

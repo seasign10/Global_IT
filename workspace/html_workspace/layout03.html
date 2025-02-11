@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반응형웹 레이아웃</title>
+  <style>
+    * {margin: 0; padding: 0;}
+
+    #container>div{
+      width: 25%;
+      height: 200px;
+      padding: 10px;
+      float: left;
+    }
+
+    #container>div>div {
+      border: 1px solid red;
+      height: 100%;
+    }
+
+    /* #content1 {background-color: red;}
+    #content2 {background-color: orange;}
+    #content3 {background-color: yellow;}
+    #content4 {background-color: green;} */
+
+    @media screen and (max-width: 768px) {
+      #container>div {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="content1">
+      <div id="news" style="border: 1px solid black;">
+        <h1>News</h1>
+      </div>
+    </div>
+    <div id="content2">
+      <div id="event">
+        <h1>Event</h1>
+      </div>
+    </div>
+    <div id="content3">
+      <div id="shop">
+        <h1>Shop</h1>
+      </div>
+    </div>
+    <div id="content4">
+      <div id="movie">
+        <h1>Movie</h1>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

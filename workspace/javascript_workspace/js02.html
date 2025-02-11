@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javascript연습</title>
+  <script>
+    let random = Math.random()*10+1; // 1~10 사이의 난수 생성
+    console.log(Math.floor(random));
+
+    let leftValue = (screen.availWidth - 500) / 2;
+    let topValue = (screen.availHeight - 400) / 2;
+    let newWin = window.open("notice.html", "js", `width=500, height=400, top=${topValue}, left=${leftValue}`);
+    // 현재는 브라우저에서 pop-up 창을 막아놓은 경우가 많아서 실행되지 않을 수 있음
+    // 이 경우, 브라우저 설정에서 pop-up 창을 허용하도록 변경해야 함
+    if(newWin == null) {
+      alert("팝업이 차단되었습니다. 팝업 차단을 해제해주세요.");
+    }
+  </script>
+</head>
+<body>
+  <button onclick="javascript:history.back()">이전</button>
+  <a href="js03.html">js03.html</a>
+</body>
+</html>

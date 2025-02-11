@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <script>
+    function check(){
+      // name 속성을 기재하는 이유
+      // 백엔드에서 데이터를 받을 때 name 속성을 기준으로 데이터를 받기 때문
+      // id 속성은 프론트엔드에서만 사용하는 것이므로 name 속성을 기재해야 값을 전달 할 수 있다.
+      if(document.joinForm.id.value==""){
+        alert("아이디를 입력하세요.");
+        document.joinForm.id.focus();
+        // button type이 submit이 아니기 때문에 return만 사용해도 된다.
+        return; // submit을 중단시켜서, 다음 검수를 진행하지 않는다.(함수 종료)
+      }
+      if(document.joinForm.pw1.value==""){
+        alert("비밀번호를 입력하세요.");
+        document.joinForm.pw1.focus();
+        return;
+      }
+      if(document.joinForm.pw2.value==""){
+        alert("비밀번호 확인을 입력하세요.");
+        document.joinForm.pw2.focus();
+        return;
+      }
+      if(document.joinForm.pw1.value != document.joinForm.pw2.value){
+        alert("비밀번호가 일치하지 않습니다.");
+        document.joinForm.pw2.select(); // select : 해당 input에 입력된 값이 선택되어 있게 하는 것
+        return;
+      }
+      if(document.joinForm.email.value==""){
+        alert("이메일을 입력하세요.");
+        document.joinForm.id.focus();
+        return;
+      }
+      document.joinForm.submit(); // submit을 진행
+    };
+
+    function check2(){
+      if(document.joinForm.id.value==""){
+        alert("아이디를 입력하세요.");
+        document.joinForm.id.focus();
+        return false; // submit을 중단시켜서, 다음 검수를 진행하지 않는다.(함수 종료)
+      }
+      if(document.joinForm.pw1.value==""){
+        alert("비밀번호를 입력하세요.");
+        document.joinForm.pw1.focus();
+        return false;
+      }
+      if(document.joinForm.pw2.value==""){
+        alert("비밀번호 확인을 입력하세요.");
+        document.joinForm.pw2.focus();
+        return false;
+      }
+      if(document.joinForm.pw1.value != document.joinForm.pw2.value){
+        alert("비밀번호가 일치하지 않습니다.");
+        document.joinForm.pw2.select(); // select : 해당 input에 입력된 값이 선택되어 있게 하는 것
+        return false;
+      }
+      if(document.joinForm.email.value==""){
+        alert("이메일을 입력하세요.");
+        document.joinForm.id.focus();
+        return false;
+      }
+      // 이메일 검수
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      const email = document.joinForm.email.value;
+      if(!emailRegex.test(document.joinForm.email.value)){
+        alert("이메일 형식이 올바르지 않습니다.");
+        document.joinForm.email.select();
+        return emailRegex.test(email); // fasle
+      }
+      // submit을 진행하려면 true를 반환해야 하지만,
+      // return false를 사용하지 않으면 자동으로 submit이 진행되기 때문에
+      // submit은 따로 작성하지 않아도 된다.
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>회원가입을 환영합니다.</h1>
+    <!-- return false: 전송막기 -->
+    <!-- form이 제대로 작성된 후에 전송(submit)되도록 -->
+    <!-- check2함수 내부에 return false;를 작성하면 검열도  -->
+    <form action="register.jsp" method="post" name="joinForm" onsubmit="return check2()">
+      <!-- hidden : 숨겨서 사용하다, 소셜로그인 등에 사용 -->
+      <input type="hidden" name="type" value="direct">
+      <ul>
+        <li>
+          <!-- required 속성을 추가하면 필수 입력체크를 자동으로 해준다. -->
+          <label for="uid">아이디</label>
+          <input type="text" id="uid" name="id" placeholder="아이디를 입력하세요" autofocus>
+        </li>
+        <li>
+          <label for="upw1">비밀번호</label>
+          <input type="password" id="upw1" name="pw1">
+        </li>
+        <li>
+          <label for="upw2">비밀번호 확인</label>
+          <input type="password" id="upw2" name="pw2">
+        </li>
+        <li>
+          <label for="uemail">이메일</label>
+          <!-- type="email"을 사용해도 검열이 완벽하지 않기 때문에 권장하지X -->
+          <input type="text" id="uemail" name="email">
+        </li>
+        <li>
+          <input type="radio" name="mailing" id="mailing_y" value="mailing_yes" checked>
+          <label for="mailing_y">메일 수신</label>
+          <input type="radio" name="mailing" id="mailing_n" value="mailing_no">
+          <label for="mailing_n">메일 수신 안함</label>
+        </li>
+        <li>
+          <label for="ubirth">생년월일</label>
+          <input type="date" id="ubirth" name="ubirth">
+        </li>
+        <li>
+          <label for="ufile">파일 선택</label>
+          <input type="file" id="ufile" name="ufile">
+        </li>
+        <li>
+          <label for="ucomment">자기소개</label>
+          <textarea id="ucomment" name="introduce" cols="30" rows="5"></textarea>
+        </li>
+        <li>
+          <label for="ujob">직업</label>
+          <select id="ujob" name="job">
+            <option value="developer">개발자</option>
+            <option value="designer">디자이너</option>
+            <option value="planner">기획자</option>
+          </select>
+        </li>
+        <li>
+          <label for="uhobby">취미</label><br>
+          <input type="checkbox" name="hobby1" value="등산">
+          <label for="hobby1">등산</label>
+          <input type="checkbox" name="hobby2" value="낚시">
+          <label for="hobby2">낚시</label>
+          <input type="checkbox" name="hobby3" value="독서">
+          <label for="hobby3">독서</label>
+        </li>
+      </ul>
+      <div>
+
+        <!-- button 태그의 기본 타입은 submit이지만
+          type="button"은 submit역할이 없다. -->
+        <input type="button" value="가입하기" onclick="check()">
+        <button>가입하기</button>
+
+        <input type="submit" value="회원가입">
+        <input type="reset" value="다시작성">
+  
+        <!-- 아래와 같이 작성해도 된다. -->
+        <button type="submit">회원가입</button>
+        <input type="reset">
+      </div>
+    </form>
+  </div>
+</body>
+</html>

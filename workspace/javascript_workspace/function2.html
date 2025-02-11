@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>function</title>
+  <script>
+    // function을 만드는 여러 방법
+
+    // 1. 함수 선언식(function declaration)
+    function f1(){
+      console.log('Hello f1');
+    }
+
+    // 2. 익명 함수(anonymous function) / 함수 표현식(function expression)
+    // => 특정조건에서 자동으로 호출되는 함수
+    // => 직접호출이 불가능하므로 reference 변수를 이용
+    // => reference 변수가 함수의 이름역할을 함
+    let f2 = function(){
+      console.log('Hello f2');
+    }
+
+    // 3. 람다식 / 화살표 함수(arrow function)
+    // => 기본적으로 익명함수와 같은 형태
+    // => reference 변수가 함수의 이름역할을 함
+    let f3 = () => {
+      console.log('Hello f3');
+    }
+
+    // 4. 화살표 함수의 축약형
+    let f4 = () => console.log('Hello f4');
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

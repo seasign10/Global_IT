@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jquery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#title").css("color", "red");
+      $(".title").css("color", "blue");
+      $("div>div>div").css("fontSize", 32);
+
+      // on : addEventListener
+      // click : onclick
+      $("#btn1").on("click",function(){console.log("on")}); 
+      $("#btn2").click(function(){console.log("click")}); 
+    });
+  </script>
+</head>
+<body>
+  <h1 id="title">jQuery</h1>
+  <h1 class="title">jQeury</h1>
+
+  <div>
+    <div>
+      <div>jQeury</div>
+    </div>
+  </div>
+
+  <button id="btn1">on</button>
+  <button id="btn2">click</button>
+  
+</body>
+</html>

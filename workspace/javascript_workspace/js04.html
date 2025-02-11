@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javascript</title>
+  <script>
+    let name;
+    console.log(typeof name); // undefined
+    name = 10;
+    console.log(typeof name); // number
+    name = "홍길동";
+    console.log(typeof name); // string
+    
+    // == 값만 같으면 true
+    console.log(null == undefined); // true
+    // === 값과 타입이 같아야 true
+    console.log(null === undefined); // false
+    console.log(null == ""); // false
+    console.log(null == 0); // false
+    console.log(0.0 == 0); // true
+
+    let student = {name:"홍길동", department:"컴퓨터공학과"} // JSON 객체
+    // .을 사용하여 속성에 접근 가능
+    console.log(student.name); // "학생의 이름"
+    console.log(student.department); // "학생의 학과"
+    // []를 사용하여 속성에 접근 가능
+    console.log(student["name"]); // "학생의 이름"
+    console.log(student["department"]); // "학생의 학과"
+
+    console.log(typeof student); // object
+
+    console.log(typeof String(10)); // number => string
+    console.log(typeof Boolean(0)); // number => boolean 
+    console.log(typeof parseInt("1234")); // string => number
+    console.log(typeof parseFloat("1234.56")); // string => number
+    console.log(10-"값"); // NaN
+
+    var a = 10;
+    var b = 2;
+    console.log(a*b); // 20
+    console.log(a/b); // 5
+    console.log(a%b); // 0
+    console.log(a**b); // 100
+
+    var c = 10;
+    var d = 20;
+    var e = 30;
+    c = d = e; // e의 값이 d에 대입되고 d의 값이 c에 대입된다.
+    console.log(c); // 30
+
+    console.log(`a: ${a} + b: ${b}`); // a: 10, b: 2
+    // 10 + 2 = 12
+    console.log(a+=b); // 12
+
+    console.log(`a: ${a} - b: ${b}`); // a: 12, b: 2
+    // 12 - 2 = 10
+    console.log(a-=b); // 10
+
+    console.log(`a: ${a} * b: ${b}`); // a: 10, b: 2
+    // 10 * 2 = 20
+    console.log(a*=b); // 20
+
+    console.log(`a: ${a} / b: ${b}`); // a: 20, b: 2
+    // 20 / 2 = 10
+    console.log(a/=b); // 10
+
+    console.log(`a: ${a} % b: ${b}`); // a: 10, b: 2
+    // 10 % 2 = 0
+    console.log(a%=b); // 0
+
+    let x = 10;
+    // x값을 먼저 사용해서 출력한 다음 x값을 1 증가시킨다.
+    console.log(x++); // 10
+    console.log(x); // 11
+    let y = 10;
+    // y깂을 먼저 1 증가시킨 후 y값을 사용해서 출력한다.
+    console.log(++y); // 11
+
+    let z = 10;
+    let result = z++;
+    console.log(result); // 10
+    console.log(z); // 11
+
+    console.log(a>b); // false
+    console.log(a<b); // true
+    console.log(a!=b); // true
+
+    let score1 = 10;
+    let score2 = 20;
+    let score3 = 30;
+    let score4 = 40;
+
+    // false && false => false
+    console.log(score1 > score2 && score3 > score4); // false
+    // true && true => false
+    console.log(score1 < score2 && score3 < score4); // true
+    // fasle || true => true
+    console.log(score1 > score2 || score3 < score4); // true
+    // !(false) => true
+    console.log(!(score1 < score2)); // false
+
+    let scorex = 15;
+    // scorex * 2 와 같은 결과
+    console.log(scorex << 1); // 30
+    let scorey = 30;
+    // 30 / 2^3 와 같은 결과
+    console.log(scorey >> 3); // 3
+    let scorez = 40;
+    // scorez / 2 와 같은 결과
+    console.log(scorez >> 1); // 20
+    
+    var arr = [1, 2, 3];          // 배열 생성
+    delete arr[2];                // 배열의 원소 중 인덱스가 2인 요소를 삭제함.
+    document.write(arr + "<br>"); // [1, 2, ]
+    // 배열에 빈자리가 생긴 것으로 undefined 값으로 직접 설정된 것은 아님.
+    document.write(arr[2] + "<br>");
+    // 배열의 요소를 삭제하는 것이지 배열의 길이까지 줄이는 것은 아님.
+    document.write(arr.length);
+    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

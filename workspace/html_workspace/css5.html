@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자식 선택자 사용시 고려사항</title>
+  <style>
+    /* drilling이 되는 것은 추천되지 X */
+    /* div>div>span{color: red;} */
+    /* div>div>#title{color: blue;} */
+
+    /* id 또는 class를 잘 활용 할것 */
+    #title{color: brown;}
+  </style>
+</head>
+<body>
+  <div>
+    <p>css3</p>
+    <div><span id="title">css3</span></div>
+  </div>
+</body>
+</html>

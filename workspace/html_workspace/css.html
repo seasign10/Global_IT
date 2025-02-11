@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS</title>
+  <style>
+    * { /* html을 포함한, body부터 모든 태그들을 reset */
+      margin: 0;
+      padding: 0;
+    }
+    h1.heading1 {
+      border: 1px solid black;
+      background-color: #ccc;
+    }
+    p {
+      font-style: italic;
+    }
+    .boldfont {
+      font-weight: bold;
+    }
+    .bggray {
+      background-color: gray;
+    }
+    #p_tag {
+      color: blue;
+    }
+    h2, h3 {
+      color: darkred;
+    }
+    /*--------------*/
+    .container {
+      width: 500px;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="heading1">CSS3</h1>
+  <p>CSS3</p>
+  <p class="boldfont bggray">CSS3</p>
+  <p class="boldfont" id="p_tag">CSS3</p>
+
+  <div class="container">
+    <h1>레드향</h1>
+  </div>
+  <div class="container">
+    <h1>샤인머스켓</h1>
+  </div>
+
+  <h2>h2</h2>
+  <h3>h3</h3>
+</body>
+</html>

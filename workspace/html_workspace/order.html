@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주문서</title>
+</head>
+<body>
+  <h1>주문서</h1>
+  <form action="order.jsp" method="post">
+    <fieldset>
+      <legend>상품 선택</legend>
+      <ul>
+        <!-- value값은 짧아야 데이터의 속도가 길고 용량을 가볍게 할 수 있다. -->
+        <li>
+          <input type="checkbox" name="product" value="s_3">
+          <label for="product-1">선물용 3kg</label>
+          <input type="number" min="0" max="5">개 (최대 5개)
+        </li>
+        <li>
+          <input type="checkbox" name="product" value="s_5">
+          <label for="product-2">선물용 5kg</label>
+          <input type="number" min="0" max="3" value="1">개 (최대 3개)
+        </li>
+        <li>
+          <input type="checkbox" name="product" value="f_3">
+          <label for="product-3">가정용 3kg</label>
+          <input type="range" min="1" max="10" value="5">개 (최대 10개)
+        </li>
+        <li>
+          <input type="checkbox" name="product" value="f_5">
+          <label for="product-4">가정용 5kg</label>
+          <input type="range" min="1" max="5" value="3">개 (최대 5개)
+        </li>
+      </ul>
+      <p><b>포장 선택</b></p>
+      <ul>
+        <!-- radio는 name을 똑같이 적용해야 grouping이 되어서 그룹중 하나를 선택 할 수 있도록 할 수 있다. -->
+        <li>
+          <label for="pack-1">포장 없음</label>
+          <input type="radio" name="pack" value="none">
+        </li>
+        <li>
+          <label for="pack-2">종이 포장</label>
+          <input type="radio" name="pack" value="paper">
+        </li>
+      </ul>
+    </fieldset>
+
+    <fieldset>
+      <legend>배송정보</legend>
+      <ul>
+        <li>
+          <label for="user-name">이름</label>
+          <input type="text" id="user-name">
+        </li>
+        <li>
+          <label for="user-address">배송 주소</label>
+          <input type="text" id="user-address">
+        </li>
+        <li>
+          <label for="user-email">이메일</label>
+          <input type="email" id="user-email">
+        </li>
+        <li>
+          <label for="user-phone">전화번호</label>
+          <input type="text" id="user-phone">
+        </li>
+      </ul>
+    </fieldset>
+    
+    <input type="submit" value="주문하기">
+    <input type="reset" value="다시 작성">
+  </form>
+</body>
+</html>

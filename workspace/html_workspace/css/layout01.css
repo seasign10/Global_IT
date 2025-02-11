@@ -1,0 +1,103 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+  }
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* header */
+header {
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  background-color: rgb(30, 31, 32);
+  color: white;
+}
+
+/* navigation */
+nav {
+  height: 50px;
+  line-height: 50px;
+  background-color: rgb(235, 239, 243);
+}
+nav li {
+  float: left;
+  padding: 0 20px;
+}
+
+/* article */
+article {
+  width: 60%;
+  height: 500px;
+  background-color: #fff;
+  float: left;
+}
+section {
+  width: 100%;
+  height: 100%;
+}
+article div {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  line-height: 500px;
+}
+#box1 {
+  float: left;
+  background-color: orange;
+}
+#box2 {
+  float: right;
+  background-color: orangered;
+}
+
+/* aside */
+aside {
+  width: 20%;
+  height: 500px;
+}
+aside.sub_nav{
+  float: left;
+  height: 500px;
+  background-color: rgb(235, 239, 243);
+}
+aside.sub_nav .sub_title{
+  margin: 2rem auto;
+  padding-left: 8px;
+
+  /* 단어 기준 줄바꿈 */
+  word-break: keep-all;
+}
+aside.sub_nav ul li{
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+aside.ads {
+  background-color: rgb(247, 248, 250);
+  float: right;
+}
+
+.on, .sub_on {
+  background-color: rgb(187, 193, 199);
+}
+nav li:hover, aside.sub_nav li:hover {
+  cursor: pointer;
+  background-color: rgb(215, 220, 224);
+}
+
+/* footer */
+footer {
+  clear: both;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  background-color: rgb(64, 66, 68);
+  color: white;
+}

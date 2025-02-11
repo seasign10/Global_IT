@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $.ajax({
+        url: "list.json",
+        success: function(result){
+          console.log(result);
+
+          let items = "";
+          for(let i=0; i<result.length; i++){
+            items += "이름: "+ result[i].name + ", 학과: " + result[i].department + "<br>";
+            $("#list").html(items);
+          }
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="list"></div>
+</body>
+</html>

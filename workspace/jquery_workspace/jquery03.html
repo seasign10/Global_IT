@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#btn1").click(function(){
+        $("div").animate({left: '250px', opacity:0.5, height:'150px', width: '150px'}, 3000);
+      })
+
+      $("#btn2").click(function(){
+        $("div").animate({
+          left: "250px",
+          height: "+=150px",
+          width: "+=150px"
+        });
+      })
+
+      $("#btn3").click(function(){
+        var div = $("div");
+        // div.animate({height: '300px', opacity: '0.4'}, "slow");
+        // div.animate({width: '300px', opacity: '0.8'}, "slow");
+        // div.animate({height: '100px', opacity: '0.4'}, "slow");
+        // div.animate({width: '100px', opacity: '0.8'}, "slow");
+        div.animate({height: '300px', opacity: '0.4'}, "slow")
+        .animate({width: '300px', opacity: '0.8'}, "slow")
+        .animate({height: '100px', opacity: '0.4'}, "slow")
+        .animate({width: '100px', opacity: '0.8'}, "slow", function(){
+          console.log("애니메이션 종료 후 작업(콜백 함수)");
+        });
+
+        // 애니메이션이 끝난다음 할 작업
+        // 애니메이션이 모두 종료 되기 전에 실행 됨
+        console.log("애니메이션 종료 후 작업(콜백함수로 넣어야 함)");
+      });
+
+      $("#btn4").click(function(){
+        $("div").animate({left: "250px"})
+        .animate({top: "250px"})
+        .animate({left: "0px"})
+        .animate({top: "50px"});
+      });
+
+
+      $("#stop").click(function(){
+        // 한번만 클릭시, 하나의 애니메이션만 끝남.
+        // $("div").stop();
+        
+        // 모든 애니메이션을 즉시 멈춤, 현재 상태 유지(마지막 장면으로 가지않고 stop위치에 머뭄)
+        // $("div").stop(true, false);
+
+        // 모든 애니메이션을 즉시 멈춤, 진행중인 애니메이션의 마지막 장면으로 이동
+        // $("div").stop(true, true);
+        
+        // 현재 애니메이션 위치에서 바로, 다음 애니메이션 실행(기본값)
+        // $("div").stop(false, false);
+        
+        // 현재 애니메이션의 마지막 장면으로 바로 가서 종료, 다음 애니메이션 실행
+        // $("div").stop(false, true);
+
+      });
+    });
+  </script>
+</head>
+<body>
+  <button id="btn1">atn1</button>
+  <button id="btn2">btn2</button>
+  <button id="btn3">btn3</button>
+  <button id="btn4">btn4</button>
+  <button id="stop">stop</button>
+  <div style="background-color: olive;height: 100px;width: 100px;position: absolute;"></div>
+</body>
+</html>

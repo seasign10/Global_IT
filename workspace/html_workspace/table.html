@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table>caption {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    td,th {
+      border-color: lightgray;
+      padding: 10px 20px;
+    }
+    th {
+      background-color: rgb(243, 243, 243);
+    }
+    .table_box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      width: 370px;
+    }
+    .table_img {
+      height: 200px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="table_box">
+    <div class="table_img">
+      <!-- figure : 도표나 일러스트 이미지 소스코드등 독립된 콘텐츠 -->
+      <figure>
+        <img src="./images/tangerine.jpg" alt="귤">
+        <figcaption>제주 감귤</figcaption>
+      </figure>
+    </div>
+    <table border="1" style="border-collapse: collapse;">
+      <caption>상품구성</caption>
+      <thead>
+        <tr>
+          <th>용도</th>
+          <th>중량</th>
+          <th>개수</th>
+          <th>가격</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2">선물용</td>
+          <td>3kg</td>
+          <td>11~16과</td>
+          <td>35,000원</td>
+        </tr>
+        <tr>
+          <td>5kg</td>
+          <td>18~16과</td>
+          <td>52,000원</td>
+        </tr>
+        <tr>
+          <td rowspan="2">가정용</td>
+          <td>3kg</td>
+          <td>11~16과</td>
+          <td>30,000원</td>
+        </tr>
+        <tr>
+          <td>5kg</td>
+          <td>18~16과</td>
+          <td>47,000원</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

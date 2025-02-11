@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>function</title>
+  <script>
+    function sum(x, y) {
+      return x + y;
+    }
+    document.write(sum(2, 3));
+
+    // 함수의 여러형태
+    // parameter, return이 없는 함수
+    function f1() {
+      console.log('f1');
+    }
+    f1();
+    // parameter가 있는 함수
+    function f2(x) {
+      console.log(x);
+    }
+    f2(10);
+
+    // parameter 없고, return이 있는 함수
+    function f3() {
+      return 10;
+    }
+    console.log(f3());
+
+    // parameter, return이 있는 함수
+    function f4(x) {
+      return x + 10;
+    }
+    console.log(f4(10));
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

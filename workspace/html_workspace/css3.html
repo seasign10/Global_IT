@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Sans+KR:wght@100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Do+Hyeon&family=Noto+Sans+KR:wght@100..900&display=swap');
+    body {
+      color: darkmagenta;
+      font-size: 2rem;
+    }
+    p {
+      /* 앞 순서에 기재된 폰트를 찾을 수 없을 시, 다음으로 기재된 폰트 사용 */
+      font-family: "Dancing Script", "Noto Sans KR", serif;
+    }
+    p.wfont {
+      font-family: "Do Hyeon", serif;
+    }
+
+    .i_tag {
+      font-size: 3rem;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <p>안녕하세요.</p>
+  <p>Hello world!</p>
+  <p class="wfont">안녕하세요.</p>
+
+  <i class="fas fa-heart i_tag"></i>
+</body>
+</html>

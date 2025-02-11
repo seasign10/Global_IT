@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // now : 인스턴스 명
+    // Date : 생성자 함수
+    // new : 생성자 함수를 통해 인스턴스를 생성할 때 사용하는 키워드
+    let now = new Date();
+    document.write(now);
+    document.write("<br>")
+    document.write(`현재 시각은 ${now.toLocaleTimeString()} 입니다.`);
+    document.write("<br>")
+    document.write("현재 시각은" + now.toLocaleTimeString() + "입니다.");
+    document.write("<h1>Javascript</h1>")
+
+    now = 100; // now 변수에 100을 대입
+    document.write(now); // 100 출력
+
+    document.write("<br>")
+
+    // let : 변수를 선언하는 키워드
+    // const : 상수를 선언하는 키워드
+    const b = 10 // b 상수에 10을 대입 (항상 상)
+    document.write(b); // 10 출력
+    // b = 20; // 상수에 값을 대입하면 에러가 발생
+
+    document.write("<h2>Array</h2>")
+
+    let c = new Array(4);
+    c[0] = 10;
+    c[1] = 20;
+    c[2] = 30;
+    c[3] = 40;
+    document.write(c[0] + "<br>");
+    document.write(c[1] + "<br>");
+    document.write(c[2] + "<br>");
+    document.write(c[3] + "<br>");
+
+    let d = [10, 20, 30, 40];
+    document.write(d[0] + "<br>");
+    document.write(d[1] + "<br>");
+    document.write(d[2] + "<br>");
+    document.write(d[3] + "<br>");
+
+    let name = "홍길동";
+    let address = "서울시";
+    document.write("이름 : " + name + "<br> 주소 : " + address + "<br>");
+    let age; // undefined (값이 지정되지 않은 상태)
+    age = 10; // 정수
+    document.write("나이 : " + age + "<br>");
+    age = "열살"; // 문자열
+    document.write("나이 : " + age + "<br>");
+
+    let nums = [1, 2, 3];
+    let chars = ["a", "b", "c", 'd'];
+
+    let numsChars = nums.concat(chars);
+    let charsNums = chars.concat(nums);
+    document.write(`nums에 chars를 연결 : ${numsChars}<br>`);
+    document.write(`chars에 nums를 연결 : ${charsNums}<br>`);
+
+    let string1 = nums.join(); // 배열을 이용해서 csv 문자열을 만들 때 사용
+    document.write(`구분자 없이 : ${string1}<br>`);
+    let string2 = nums.join("/");
+    document.write('/ 구분자 공백 : ' + string2 + '<hr>');
+
+    let ret1 = nums.push(4, 5); // [1, 2, 3, 4, 5]
+    document.write(`Lenth : ${ret1}<br>`);
+    document.write(`Array : ${nums}<hr>`);
+
+    let ret2 = nums.unshift(0); // [0, 1, 2, 3, 4, 5]
+    document.write(`Length : ${ret2}<br>`);
+    document.write(`Array : ${nums}<hr>`);
+
+    let popped1 = chars.pop(); // ['a', 'b', 'c']
+    document.write(`Popped : ${popped1}<br>`);
+    document.write(`Array : ${chars}<hr>`);
+    let popped2 = chars.shift(); // ['b', 'c']
+    document.write(`Popped : ${popped2}<br>`);
+    document.write(`Array : ${chars}<hr>`);
+
+    let study = ["HTML", "CSS", "Javascript", "jQuery", "react", "nodeJs"];
+    let js = study.splice(2);
+    // 원본이 변경 됨
+    document.write(`study : ${study}<br>`); // ["HTML", "CSS"] 
+    // 삭제된 요소들을 반환
+    document.write(`js : ${js}<hr>`); // ["Javascript", "jQuery", "react", "nodeJs"]
+  
+    let jquery = js.splice(1, 1); // ["CSS"]
+    // 원본이 변경 됨
+    document.write(`study : ${js}<br>`); // ["Javascript", "react", "nodeJs"]
+    // 삭제된 요소들을 반환
+    document.write(`jquery : ${jquery}<hr>`); // ["jQuery"]
+    
+    let modernjs = js.splice(1, 0, 'typescript');
+    document.write(`study : ${js}<br>`); // 원본 변경 ["Javascript", "typescript", "react", "nodeJs"]
+    document.write(`modernjs : ${modernjs}<hr>`); // [] (삭제된 요소가 없음)
+
+    let colors = ["red", "green", "blue", "white", "black"];
+    let ret3 = colors.slice(2); // ["blue", "white", "black"]
+    // 원본 변경 없음 
+    document.write(`colors : ${colors}<br>`); // ["red", "green", "blue", "white", "black"]
+    document.write(`ret3 : ${ret3}<hr>`); // ["blue", "white", "black"]
+
+    let now2 = new Date();
+    document.write("year : " + now2.getFullYear() + "<br>");
+    document.write("month : " + now2.getMonth()+1 + "<br>");
+    document.write("date : " + now2.getDate() + "<br>");
+    document.write("day : " + now2.getDay() + "<br>");
+    document.write("hours : " + now2.getHours() + "<br>");
+    document.write("minutes : " + now2.getMinutes() + "<br>");
+    document.write("seconds : " + now2.getSeconds() + "<br>");
+    document.write("milliseconds : " + now2.getMilliseconds() + "<br>");
+    document.write("week : " + now2.getWeek() + "<br>");
+
+</script>
+</head>
+<body>
+  <a href="js02.html">js02.html</a>
+</body>
+</html>

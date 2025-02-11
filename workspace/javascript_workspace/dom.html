@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+  <script>
+    // 여기서 코드를 작성하면 DOM을 읽어내기 전에 실행되기 때문에,
+    // DOM을 조작하는 코드를 작성할 때는 body 태그의 끝에 작성하는 것이 좋다.
+  </script>
+</head>
+<body>
+
+  <!-- 예제1 -->
+  <h1>JavaScript</h1>
+  <h1>DOM</h1>
+  <h2 id="main">JavaScript</h2>
+
+  <div class="title">JavaScript</div>
+  <div class="title">CSS</div>
+
+  <script>
+    // 태그
+    let fistH = document.getElementsByTagName('h1')[0];
+    fistH.innerText = 'Hello, JavaScript!';
+
+    let h1s = document.getElementsByTagName('h1');
+    for(let i=0; i<h1s.length; i++){
+      h1s[i].style.color = 'lightgray';
+    }
+
+    // 클래스
+    let titles = document.getElementsByClassName('title');
+    for(let i=0; i<titles.length; i++){
+      titles[i].style.color = 'blue';
+    }
+
+    // 아이디
+    let main = document.getElementById('main');
+    main.style.color = 'green';
+
+    // 쿼리셀렉터
+    // JavaScript1 
+    let content1 = document.querySelector('.content>div>div'); 
+    content1.style.fontSize = '20px';
+    // JavaScript1, JavaScript2 
+    let content2 = document.querySelectorAll('.content>div>div');
+    for(let i=0; i<content2.length; i++){
+      content2[i].style.backgroundColor = 'pink';
+    }
+  </script>
+
+  <!-- 예제2 -->
+  <div class="content">
+    content
+    <div>
+      inner content
+      <div>JavaScript1</div>
+      <div>JavaScript2</div>
+    </div>
+  </div>
+
+  <div class="container"
+  style="border: 1px solid #000; width: 500px; height: 300px;">
+  </div>
+  <script>
+    let container = document.querySelector('.container');
+    container.onclick = (e) => {
+      console.log(`이벤트 발생위치: ${e.clientX}, ${e.clientY}`);
+    };
+  </script>
+
+  <!-- 예제3 -->
+   <div class="container2">
+    <img src="img/kitty-1.png" alt="고양이" id="cat">
+   </div>
+
+   <script>
+    let cat = document.querySelector('#cat');
+    cat.addEventListener("mouseover", () => {
+      cat.src = 'img/kitty-2.png';
+    });
+    cat.addEventListener("mouseout", () => {
+      cat.src = 'img/kitty-1.png';
+    });
+   </script>
+</body>
+</html>

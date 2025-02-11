@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>addClass</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <style>
+    .lined {
+      text-decoration: line-through;
+      color: lightgray;
+    }
+  </style>
+  <script>
+    // $(document).ready(); 와 같음
+    $(function(){
+      $("#addBtn").on("click", function(){
+        $("#first, #third").addClass("lined");
+      });
+      $("#removeBtn").on("click", function(){
+        $("#first, #third").removeClass("lined");
+      });
+      $("#toggleBtn").on("click", function(){
+        $("#first, #third").toggleClass("lined");
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>addClass, removeClass, toggleClass</h1>
+  <p id="first">jQuery</p>
+  <p id="second">jQuery</p>
+  <p id="third">jQuery</p>
+  <button id="addBtn">클래스 추가</button>
+  <button id="removeBtn">클래스 삭제</button>
+  <button id="toggleBtn">토글 버튼</button>
+</body>
+</html>

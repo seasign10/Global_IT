@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scope</title>
+  <script>
+    function f1() {
+      var a = 1;
+    }
+    console.log(a); // ReferenceError: a is not defined
+
+    var b = 2;
+    function f2() {
+      b = 3;
+    }
+    f2();
+    console.log(b); // 3
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

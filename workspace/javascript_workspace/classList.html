@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>classList</title>
+  <style>
+    .color1{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript</h1>
+  <button id="btn1">btn1</button>
+  <button id="btn2">btn2</button>
+  <button id="btn3">btn3</button>
+
+  <script>
+    document.getElementById("btn1").addEventListener("click",()=>{
+      document.getElementsByTagName("h1")[0].classList.add("color1");
+      
+      // 직접 스타일을 변경하는 방법도 있지만,
+      // classList를 사용하는 것을 권장
+      // document.getElementsByTagName("h1")[0].style.color="red";
+    });
+    document.getElementById("btn2").addEventListener("click",()=>{
+      document.getElementsByTagName("h1")[0].classList.remove("color1");
+    });
+    document.getElementById("btn3").addEventListener("click",()=>{
+      document.getElementsByTagName("h1")[0].classList.toggle("color1");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object</title>
+  <script>
+    // 객체는 여러 개의 데이터를 하나로 묶어서 관리할 수 있는 자료구조이다.
+    let perseon = {
+      name:"홍길동", 
+      age:16, 
+      pId:"123456-1234567",
+      fullId: function(){
+        // this는 현재 객체를 가리킨다. 
+        // 여기서는 person을 가리킨다.
+        return this.pId+"-"+this.age; 
+      }
+    };
+    document.write(perseon.name + "<br>");
+    document.write(perseon.fullId() + "<br>");
+
+    let person2 = {
+      name:"홍길동", 
+      age:16, 
+      pId:"123456-1234567",
+      // 화살표 함수는 this를 사용할 수 없다.
+      // 화살표 함수는 자신만의 this를 가지지 않고,
+      // 상위 스코프의 this를 그대로 이용한다.
+      fullId: ()=>{
+        // return this.pId+"-"+this.age; 
+        return person2.pId+"-"+person2.age;
+      }
+    }
+    document.write(person2.name + "<br>");
+    document.write(person2.fullId() + "<br>");
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

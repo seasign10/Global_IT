@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="shortcut icon" href="img/profile.webp" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- navigat -->
+  <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <!-- <span class="glyphicon glyphicon-home"></span> -->
+        HAEIN
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="intro" class="container-fluid bg-1 text-center">
+    <h1>HAEIN</h1>
+    <img class="img-circle" src="img/profile.webp" alt="profile" width="200px" height="200px">
+    <h2>Introduce</h2>
+    <p>Hello World Together!</p>
+  </section>
+
+  <!-- about -->
+  <section id="about" class="container-fluid bg-2 text-center">
+    <h3>What am I?</h3>
+    <div class="container">
+      <p>
+        4년제 미술대학 전공 후
+        SSAFY에서 풀스택, NewdDeal에서 Front-end 교육 이수 <br>
+        약 10개의 프로젝트를 진행했습니다. <mark>주 종목은 웹 Front-end</mark>입니다.
+      </p>
+    </div>
+    <a href="https://github.com/seasign10" class="btn btn-default btn-lg" target="_blank">
+      <span class="glyphicon glyphicon-bookmark" style="vertical-align: middle;"></span>
+      My github
+    </a>
+  </section>
+
+  <!-- portfolio -->
+  <section id="portfolio" class="container-fluid bg-3 text-center">
+    <h3>Portfolio</h3>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="pjt_title">
+          <div>
+            <span class="label label-warning label-pjt">Toy</span>
+            브랜드홍보
+          </div>
+          <span class="label label-default label-date">2025.01</span>
+        </div>
+        <img class="img_where img-responsive" src="/img/pjt00.jpg" 
+        alt="Toy project">
+        <div class="btn_box">
+          <a href="#" class="btn btn-default btn-lg" type="button" data-toggle="modal" data-target="#pjt00-Modal">
+            More
+          </a>
+          <!-- Modal -->
+          <div id="pjt00-Modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Starbucks 브랜드홍보</h4>
+                </div>
+                <div class="modal-body">
+                  <video src="/media/pjt00.mp4" loop muted autoplay width="100%"></video>
+                  <p>HTML5, CSS3 사용, Responsive web 구현<br>
+                    Media Query를 사용하여 반응형 웹 구현<br>
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <a href="https://github.com/Leeseasign/Global_IT_00" target="_blank" type="button" class="btn btn-dark">Github</a>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="pjt_title">
+          <div>
+            <span class="label label-warning label-pjt">Toy</span>
+            쿠팡이츠
+          </div>
+          <span class="label label-default label-date">2025.02</span></div>
+        <img class="img_where img-responsive" src="/img/pjt01.jpg" 
+        alt="Toy project">
+        <div class="btn_box">
+          <a class="btn btn-default btn-lg" type="button" data-toggle="modal" data-target="#pjt01-Modal">
+            More
+          </a>
+          <!-- Modal -->
+          <div id="pjt01-Modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">CoupangEats Demo Site</h4>
+                </div>
+                <div class="modal-body">
+                  <video src="/media/pjt01.mp4" loop muted autoplay width="100%"></video>
+                  <p>HTML5, CSS3를 기반으로 Bootstrap4 사용, Responsive web 구현<br>
+                    CSS 라이브러리(Bootstrap)를 사용함으로써 빠른 웹 구현<br>
+                    Media Query를 사용하여 반응형 웹 구현<br>
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <a href="http://leeseasign.dothome.co.kr/" target="_blank" type="button" class="btn">Site</a>
+                  <a href="https://github.com/Leeseasign/Global_IT_01" target="_blank" type="button" class="btn btn-dark" class="m-0">Github</a>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="pjt_title">
+          <div>
+            <span class="label label-warning label-pjt">Mini</span>
+            PJT-1
+          </div>
+          <span class="label label-default label-date">2025.02</span></div>
+        <img class="img_where img-responsive" src="/img/ex.jpg" 
+        alt="Mini project 1">
+        <div class="btn_box">
+          <a href="#" class="btn btn-default btn-lg">
+            More
+          </a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="pjt_title">
+          <div>
+            <span class="label label-warning label-pjt">Mini</span>
+            PJT-2 
+          </div>
+          <span class="label label-default label-date">2025.00</span>
+        </div>
+        <img class="img_where img-responsive" src="/img/ex.jpg" 
+        alt="Mini project 2">
+        <div class="btn_box">
+          <a href="#" class="btn btn-default btn-lg">
+            More
+          </a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="pjt_title">
+          <div>
+            <span class="label label-warning label-pjt">Final</span>
+            Final PJT 
+          </div>
+          <span class="label label-default label-date">2025.00</span></div>
+        <img class="img_where img-responsive" src="/img/ex.jpg" 
+        alt="Final project">
+        <div class="btn_box">
+          <a href="#" class="btn btn-default btn-lg">
+            More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- contact -->
+    <div id="contact" class="container-fluid">
+      <div class="container">
+        <h3>Contact</h3>
+        <div class="contact-box">
+          <a href="https://seasign10.github.io/" target="_blank">
+            <span class="glyphicon glyphicon-home"></span>
+            Hompage
+          </a>
+        </div>
+        <div class="contact-box">
+          <a href="mailto:seasign10@gmail.com">
+            <span class="glyphicon glyphicon-envelope"></span>
+            seasign10@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container-fluid bg-4 text-center">
+      <p>&copy; All rights reserved by Lee hae in.</p>
+    </footer>
+</body>
+</html>

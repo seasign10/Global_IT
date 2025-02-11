@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>addList 사용하는 예제</title>
+  <style>
+    .disabled {
+      background-color: lightgray;
+      color: gray;
+      border: 1px solid gray;
+    }
+    .enabled {
+      background-color: lightgreen;
+      color: green;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label>
+      <input type="checkbox" id="agree">
+    </label>
+  </div>
+  <div>
+    <button id="proceed" disabled class="disabled">다음으로 진행</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+      const checkbox = document.querySelector("#agree");
+      const proceedBtn = document.querySelector("#proceed");
+      checkbox.addEventListener("change", function(){
+        if(this.checked) { // 화살표 함수를 사용하면 this가 window 객체를 가리키므로 사용하지 않는다.
+          // if(checkbox.checked) { // 직접적으로 checkbox.checked를 사용해도 된다.
+          proceedBtn.classList.remove("disabled");
+          proceedBtn.classList.add("enabled");
+          proceedBtn.disabled = false;
+        } else {
+          proceedBtn.classList.remove("enabled");
+          proceedBtn.classList.add("disabled");
+          proceedBtn.disabled = true;
+        }});
+        
+      // 또는 toggle을 사용하여 간단하게 구현할 수 있다.
+      // checkbox.addEventListener("change", function(){
+      //   proceedBtn.classList.toggle("disabled");
+      //   proceedBtn.classList.toggle("enabled");
+      //   proceedBtn.disabled = !proceedBtn.disabled;
+      // });
+    });
+  </script>
+</body>
+</html>

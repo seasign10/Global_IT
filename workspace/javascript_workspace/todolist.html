@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Todo List</h1>
+    <p>해야 할 일을 기록해 보세요.</p>
+    <form action="todolist.jsp">
+      <label for="subject">주제</label>
+      <input type="text" id="subject" autofocus>
+      <button>추가</button>
+    </form>
+    <hr>
+    <ul id="itemList"></ul>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{ // DOM이 로드되면 실행
+      const button=document.querySelector("button");
+      button.addEventListener("click", (e)=>{
+        // 기본동작방지. submit(전송)이벤트 발생하지 않음.
+        // 즉 todolist.jsp로 전송되는 것을 막음.
+        e.preventDefault(); 
+        newRegister(); // 새로운 등록
+      });
+
+      // 항목(li 태그)을 클릭하면 삭제
+      const itemList = document.querySelector("#itemList"); // ul태그 찾기
+      itemList.addEventListener("click", (e)=>{
+        if(e.target.tagName === "LI"){ // 클릭한 태그가 li태그인 경우
+          if(confirm("삭제하시겠습니까?")){ // 확인창 띄우기
+            e.target.remove(); // 클릭한 li태그 삭제
+          }
+        }
+      });
+
+      function newRegister(){
+        const newItem = document.createElement("li"); // li요소 생성
+        const subject = document.querySelector("#subject"); // input 태그 찾기
+        const newText = document.createTextNode(subject.value); // input 태그의 값 가져오기
+        
+        if(newText.length === 0){ // 입력값이 없으면 추가하지 않음
+          return;
+        }
+
+        newItem.appendChild(newText); // li요소에 input태그의 값 추가
+
+        const itemList = document.querySelector("#itemList"); // ul태그 찾기
+        itemList.appendChild(newItem); // ul태그에 li요소 추가 
+
+        subject.value = ""; // input태그의 값 초기화
+      };
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework</title>
+  <script>
+    // 첫 번째 문제
+    document.write("<h3>01. 현재 날짜를 구해서 2025-02-04 형식으로 출력</h3>");
+  
+    const now = new Date();
+    const year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let date = now.getDate();
+
+    if (month < 10) {
+      month = '0' + month;
+    }
+    if (date < 10) {
+      date = '0' + date;
+    }
+    
+    document.write(year + '-' + month + '-' + date);
+    
+    // 두 번째 문제
+    document.write("<h3>02. 1~20까지의 난수</h3>");
+    let random = Math.random()*20+1;
+    random = Math.floor(random);
+    document.write(random);
+    
+    // 세 번째 문제
+    document.write("<h3>03. 구글 사이트로 이동하는 버튼</h3>");
+    const site = `"javascript:location.href='https://www.google.com/'"`
+    document.write(`<button target="_blank" onclick=${site}>구글</button>`)
+    
+    // 네 번째 문제
+    document.write("<h3>04. 1~5 숫자 5개를 배열에 넣고 출력</h3>");
+    let num = [];
+    for(let i=0; i<5; i++)num.push(i+1);
+    document.write(`[${num}]`);
+    
+    // 다섯 번째 문제
+    document.write("<h3>05. 6~10을 4번 배열에 넣고 출력</h3>");
+    for(let i=6; i<11; i++)num.push(i);
+    document.write(`[${num}]`);
+    
+    // 여섯 번째 문제
+    document.write("<h3>06. 이름, 학과, 학년을 배열에 넣고 csv 생성</h3>");
+    const csv = ['이름', '학과', '학년'];
+    document.write(csv.join());
+    
+    // 일곱 번째 문제
+    document.write("<h3>07. instance란?</h3>");
+    document.write("<p>객체를 틀처럼 사용해서 같은 모양으로 찍어낸(할당) 것</p>");
+    
+  </script>                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</head>
+<body>
+</body>
+</html>

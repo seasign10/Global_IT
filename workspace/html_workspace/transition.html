@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transition</title>
+  <style>
+    #parent {
+      width: 500px;
+      height: 500px;
+      background-color: beige;
+      perspective: 500px;
+    }
+    #child {
+      width: 200px;
+      height: 200px;
+      background-color: skyblue;
+      opacity: 0;
+      transition: all 1s;
+    }
+
+    #parent:hover #child {
+      transform: translateX(200px) rotateX(360deg);
+      width: 300px;
+      height: 300px;
+      background-color: rgb(86, 117, 173);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="parent">
+    <div id="child"></div>
+  </div>
+</body>
+</html>

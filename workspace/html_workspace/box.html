@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box 모델연습</title>
+</head>
+<body>
+  <div style="background: red; width: 500px;">
+    CSS3
+  </div>
+  캐스캐이딩 스타일 시트
+  <br>
+  <!-- inline : width를 설정할 수 없음 -->
+  <span style="background: blue; padding-right: 464px;">CSS3</span>
+  캐스캐이딩 스타일 시트
+  <br>
+  <!-- inline-block : block처럼 width를 설정할 수 있음 -->
+  <span style="background: green; display: inline-block; width: 500px;">CSS3</span>
+  캐스캐이딩 스타일 시트
+
+  <div>
+    <!-- padding/border로 인해 너비가 100% 넘게 될 경우, 아래와 같이 box-sizing을 설정해준다. -->
+    <div style="background: orange; 
+    width: 50%; height: 100px; float: left;
+    padding: 10px; box-sizing: border-box;">
+      HTML
+    </div>
+    <div style="background: orangered; 
+    width: 50%; height: 100px; float: left; 
+    padding: 10px; box-sizing: border-box;">
+      CSS
+    </div>
+  </div>
+</body>
+</html>

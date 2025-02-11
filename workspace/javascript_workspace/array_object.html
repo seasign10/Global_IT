@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>array, object</title>
+  <script>
+    // 배열 내부에 객체를 저장할 수 있다.
+    // 학생 목록 배열
+    let students = [
+      {
+        name: "철수", 
+        age: 22,
+        department: ["컴퓨터공학과", '철학과'],
+        show: function(){
+          return this.name+":"+this.department;
+        }
+      },
+      {
+        name: "영희", 
+        age: 23,
+        department: '경제학과',
+        show: function(){
+          return this.name+":"+this.department;
+        }
+      },
+      {
+        name: "민수", 
+        age: 21,
+        department: '영문학과',
+        show: function(){
+          return this.name+":"+this.department;
+        }
+      },
+    ];
+    // 0번째 student의 1번째 department 출력
+    // .을 사용하여 객체의 속성에 접근
+    // []를 사용하여 배열의 요소에 접근
+    document.write(students[0].department[1]+"<br>");
+    // 1번째 student의 show() 메소드 호출
+    document.write(students[1].show()+"<br>");
+
+
+    // 객체를 따로 생성해서 배열에 저장
+    let student1 = {
+      name: "철수", 
+      age: 22,
+      department: ["컴퓨터공학과", '철학과'],
+      show: function(){
+        return this.name+":"+this.department;
+      }
+    };
+    let student2 = {
+      name: "영희", 
+      age: 23,
+      department: '경제학과',
+      show: function(){
+        return this.name+":"+this.department;
+      }
+    };
+
+    let students2 = [student1, student2];
+
+    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

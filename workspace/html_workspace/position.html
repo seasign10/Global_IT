@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      /* margin: 0; */
+    }
+    div {
+      width:  200px;
+      height: 200px;
+      text-align: center;
+    }
+
+    .box {
+      line-height: 200px;
+    }
+    #box1 {
+      background-color: red;
+    }
+    #box2 {
+      background-color: blue;
+      position: absolute;
+      top: 500px;
+      left: 0;
+    }
+    #box3 {
+      background-color: green;
+      position: relative;
+      left: 50px;
+      top: 50px;
+    }
+    #box4 {
+      background-color: yellow;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+
+    #parent {
+      background-color: lemonchiffon;
+      box-shadow: 0.1px 0.1px 4px orange;
+      position: relative;
+      left: 300px;
+    }
+    #child {
+      background-color: orange;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 40px;
+      top: 70px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1" class="box"><b>box1</b>(relative)</div>
+  <div id="box2" class="box"><b>box2</b>(absolute)</div>
+  <div id="box3" class="box"><b>box3</b>(relative)</div>
+  <div id="box4" class="box"><b>box4</b>(fixed)</div>
+
+  <!-- parent에 position영향 받는 박스 -->
+  <div id="parent">
+    parent
+    <div id="child">child</div>
+  </div>
+</body>
+</html>
