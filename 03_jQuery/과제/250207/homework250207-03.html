@@ -129,13 +129,13 @@
         <div class="alert-id"></div>
         <div class="input-container">
           <i class="fa-solid fa-lock"></i>
-          <input id="upwd" class="input-field" type="password" placeholder="비밀번호" name="upwd">
+          <input id="upwd" class="input-field" type="password" placeholder="비밀번호" name="upwd" onblur="upwdChk1()">
           <i class="fa-solid fa-check hidden"></i>
         </div>
         <div class="alert-pwd"></div>
         <div class="input-container">
           <i class="fa-solid fa-lock-open"></i>
-          <input id="upwdChk" class="input-field" type="password" placeholder="비밀번호 확인" name="upwdChk">
+          <input id="upwdChk" class="input-field" type="password" placeholder="비밀번호 확인" name="upwdChk" onblur="upwdChk2()">
           <i class="fa-solid fa-check hidden"></i>
         </div>
         <div class="alert-pwd-chk"></div>
@@ -334,8 +334,8 @@
           alertPwdChk.innerHTML = `
             <p><i class="fa-solid fa-xmark"></i>확인을 위해 새 비밀번호를 다시 입력해주세요.</p>
           `;
-  
           inputCont[2].style.borderBottom = "2px solid red";
+          alertPwdChk.style.color = "red";
         }else if(upwd !== upwdChk){
           alertPwdChk.innerHTML = `
           <p><i class="fa-solid fa-xmark"></i>새 비밀번호가 일치하지 않습니다.</p>
@@ -437,14 +437,24 @@
       return false;
     }
 
-    // 비밀번호 설명 텍스트 (사용X)
+
+    // 비밀번호 설명 텍스트 (수정 중)
     const checkPwd = ()=>{
+      const inputField1 = document.querySelector("#upwd");
+      const inputField2 = document.querySelector("#upwdChk");
+
+      // inputField1.addEventListener("click", ()={
+      //   isClickedPwd = true;
+      // });
+      // inputField2.addEventListener("click", ()={
+      //   isClickedPwdChk = true;
+      // });
+
       const pwdInput = inputCont[1].querySelector(".input-field");
       const pwdChkInput = inputCont[2].querySelector(".input-field");
       alertPwd = document.querySelector(".alert-pwd");
       alertPwdChk = document.querySelector(".alert-pwd-chk");
       const pwdFocus = ()=> {
-        inputCont[1].style.borderBottom = "2px solid #0073E9";
         alertPwd.style.color = "gray";
         alertPwd.innerHTML = `
           <p><i class="fa-solid fa-xmark"></i>영문/숫자/특수문자 2가지 이상 조합 (8~20자).</p>
@@ -453,32 +463,29 @@
         `;
       };
       const pwdChkFocus = ()=> {
-        inputCont[2].style.borderBottom = "2px solid #0073E9";
         alertPwdChk.style.color = "gray";
         alertPwdChk.innerHTML = `
         <p><i class="fa-solid fa-xmark"></i>확인을 위해 새 비밀번호를 다시 입력해주세요.</p>
         `;
       };
-      const pwdBlur = ()=> {inputCont[1].style.borderBottom = "1px solid lightgray";};
-      const pwdChkBlur = ()=> {inputCont[2].style.borderBottom = "1px solid lightgray";};
-      console.log(alertPwd.innerText.trim());
-      console.log(alertPwdChk.innerText.trim());
+      console.log(inputCont[1].style.borderBottom);
+      console.log(inputCont[2].style.borderBottom);
       
       if(!alertPwd.innerText.trim()){
-        pwdInput.addEventListener("focus", pwdFocus);
-        pwdInput.addEventListener("blur", pwdBlur);
+        if(inputCont[1].style.borderBottom == "2px solid red"){
+          console.log("in");
+        };
+        pwdInput.addEventListener("click", pwdFocus);
       }else{
         // 이벤트 해제
-        pwdInput.removeEventListener("focus", pwdFocus);
-        pwdInput.removeEventListener("blur", pwdBlur);
+        pwdInput.removeEventListener("click", pwdFocus);
       }
       if(!alertPwdChk.innerText.trim()){
-        pwdChkInput.addEventListener("focus", pwdChkFocus);
-        pwdChkInput.addEventListener("blur", pwdChkBlur);
+        if(inputCont[2].style.borderBottom == "2px solid red") return;
+        pwdChkInput.addEventListener("click", pwdChkFocus);
       }else{
         // 이벤트 해제
-        pwdChkInput.removeEventListener("focus", pwdChkFocus);
-        pwdChkInput.removeEventListener("blur", pwdChkBlur);
+        pwdChkInput.removeEventListener("click", pwdChkFocus);
       }
     };
     // checkPwd();
