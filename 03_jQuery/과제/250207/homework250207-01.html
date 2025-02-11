@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01. classList</title>
+</head>
+<style>
+  #container {position: relative;}
+  #box {
+    width: 200px; 
+    height: 200px;
+    transition: all 1s;
+    border: 1px solid;
+  }
+  .move-right {right: 0;transform: translateX(100%);}
+  .move-left {left: 0;transform: translateX(0);}
+</style>
+<body>
+  <div id="container">
+    <div id="box" class="move-left"></div>
+  </div>
+  <button id="btn">move</button>
+  <script>
+    // 1. classList.add()를 사용
+    // 박스가 왼쪽에서 오른쪽으로 이동하게
+    let isMoved = false;
+    const box = document.getElementById("box");
+    const btn = document.getElementById("btn");
+    btn.addEventListener("click", ()=>{
+      if(!isMoved){
+        box.classList.add("move-right");
+        box.classList.remove("move-left");
+      }else{
+        box.classList.add("move-left");
+        box.classList.remove("move-right");
+      }
+      isMoved = !isMoved;
+    });
+  </script>
+</body>
+</html>
