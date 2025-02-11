@@ -129,13 +129,13 @@
         <div class="alert-id"></div>
         <div class="input-container">
           <i class="fa-solid fa-lock"></i>
-          <input class="input-field" type="password" placeholder="비밀번호" name="upwd" onchange="upwdChk1(value)">
+          <input id="upwd" class="input-field" type="password" placeholder="비밀번호" name="upwd">
           <i class="fa-solid fa-check hidden"></i>
         </div>
         <div class="alert-pwd"></div>
         <div class="input-container">
           <i class="fa-solid fa-lock-open"></i>
-          <input class="input-field" type="password" placeholder="비밀번호 확인" name="upwdChk">
+          <input id="upwdChk" class="input-field" type="password" placeholder="비밀번호 확인" name="upwdChk">
           <i class="fa-solid fa-check hidden"></i>
         </div>
         <div class="alert-pwd-chk"></div>
@@ -175,7 +175,8 @@
 
       // input focus style
       inputCont.forEach((input)=>{
-        input.addEventListener("focus", ()=>{
+        input.addEventListener("click", ()=>{
+          if(input.style.borderBottom == "2px solid red")return;
           input.style.borderBottom = "2px solid #0073E9";
         });
       });
@@ -222,14 +223,22 @@
       };
 
       // 비밀번호 확인 검수를 위해 전역 선언
-      let upwd = document.joinForm.upwd.value;
+      // let upwd = document.joinForm.upwd.value;
+      let pwdVal;
+      let pwdChkVal;
       // oninput 이벤트 리스너 추가
-      inputField.addEventListener('input', handleInputChange);
+      const inputField1 = document.querySelector("#upwd");
+      const inputField2 = document.querySelector("#upwdChk");
+      const handleInputChange = () =>{
+        pwdVal = inputField1.value;
+        pwdChkVal = inputField2.value;
+      };
+      
       // 비밀번호 검수
-      function upwdChk1(value){
-        console.log(value);
+      function upwdChk1(){
+        handleInputChange();
+        const upwd = pwdVal;
         
-        upwd = document.joinForm.upwd.value;
         // 1-1. 영문/숫자/특수문자 2가지 이상 조합 (알파벳,숫자/ 알파벳, 특수문자/ 숫자, 특수문자)
         // ?:를 사용함으로써 그룹을 묶어줌 (?:) => 그룹으로 묶지만 그룹으로 인식하지 않아 메모리를 차지하지 않음
         // (?=.*[a-zA-Z](?=.*[0-9]))|(?=.*[a-zA-Z](?=.*[!@#$%^&*]))|(?=.*[0-9](?=.*[!@#$%^&*]))
@@ -313,23 +322,27 @@
           isUpwd = true;
         };
       };
+      inputField1.addEventListener('input', upwdChk1);
 
       // 비밀번호 확인 검수
       function upwdChk2(){
-        const upwdChk = document.joinForm.upwdChk.value;
+        handleInputChange();
+        const upwd = pwdVal;
+        const upwdChk = pwdChkVal;
+        
         if(!upwdChk){
           alertPwdChk.innerHTML = `
             <p><i class="fa-solid fa-xmark"></i>확인을 위해 새 비밀번호를 다시 입력해주세요.</p>
           `;
   
           inputCont[2].style.borderBottom = "2px solid red";
-        }
-        if(upwd !== upwdChk){
+        }else if(upwd !== upwdChk){
           alertPwdChk.innerHTML = `
-            <p><i class="fa-solid fa-xmark"></i>새 비밀번호가 일치하지 않습니다.</p>
+          <p><i class="fa-solid fa-xmark"></i>새 비밀번호가 일치하지 않습니다.</p>
           `;
+          inputCont[2].style.borderBottom = "2px solid red";
           alertPwdChk.style.color = "red";
-        }else if(upwd){
+        }else if(upwd == upwdChk){
           alertPwdChk.innerHTML = `
             <p><i class="fa-solid fa-check"></i>새 비밀번호가 일치합니다.</p>
           `;
@@ -339,6 +352,7 @@
           isUpwdChk = true;
         }
       };
+      inputField2.addEventListener('input', upwdChk2);
 
       // 이름 검수
       function unameChk(){
@@ -381,16 +395,8 @@
         }
       };
 
-      // 총 검수
-      function check(){
-        
-        uidChk();
-        upwdChk1();
-        upwdChk2();
-        unameChk();
-        unumerChk();
-
-        // 모두 동의 체크
+      // 모두 동의 체크
+      function allChk(){
         const allChk = document.joinForm.allChk;
         const alertAllCheck = document.querySelector(".alert-all-check");
         if(!allChk.checked){
@@ -403,6 +409,20 @@
           alertAllCheck.innerHTML = "";
           isAgree = true;
         }
+      };
+      document.joinForm.allChk.addEventListener("change", ()=>{
+        allChk();
+      });
+
+      // 총 검수
+      function check(){
+        uidChk();
+        upwdChk1();
+        upwdChk2();
+        unameChk();
+        unumerChk();
+        allChk()
+
 
         if(isUid && isUpwd && isUpwdChk && isUname && isUnumber && isAgree){
           alert("회원가입이 완료되었습니다.");

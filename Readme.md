@@ -5,4 +5,8 @@
 > :page_with_curl: 01_HTML+CSS
 >
 > :page_with_curl: 02_JavaScript
+>
+> :page_with_curl: 03_jQuery
+
+
 
