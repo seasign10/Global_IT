@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>parent</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <style>
+    .container * {
+      display: block;
+      border: 1px solid lightgray;
+      margin: 15px;
+      padding: 5px;
+    }
+  </style>
+  <script>
+    $(document).ready(function(){
+      $("#btn1").click(function(){
+        $("*:not(button)").css({"border": "none"});
+        $(".container *").css({"border": "1px solid lightgray"});
+        // 부모 요소
+        $("p").parent().css({"border": "2px solid red"});
+      });
+      $("#btn2").click(function(){
+        $("*:not(button)").css({"border": "none"});
+        $(".container *").css({"border": "1px solid lightgray"});
+        // 모든 부모 요소
+        $("p").parents().css({"border": "2px solid red"});
+      });
+      $("#btn3").click(function(){
+        $("*:not(button)").css({"border": "none"});
+        $(".container *").css({"border": "1px solid lightgray"});
+        // 지정한 부모 전까지
+        $("p").parentsUntil("div").css({"border": "2px solid red"});
+      });
+
+      $("#btn4").click(function(){
+        $("*:not(button)").css({"border": "none"});
+        $(".container *").css({"border": "1px solid lightgray"});
+        // 가장 가까운 부모 요소
+        $(".container p").closest("p").css({"border": "2px solid blue"});
+      });
+
+      $("#reset").click(function(){
+        $("*:not(button)").css({"border": "none"});
+        $(".container *").css({"border": "1px solid lightgray"});
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div>div 요소
+      <ul>ul 요소
+        <li>li 요소</li>
+        <li>li 요소
+          <p>p요소(기준)
+            <span>span 요소</span>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <button id="btn1">p요소의 부모요소</button>
+  <button id="btn2">p요소의 부모요소 요소</button>
+  <button id="btn3">p요소의 부모요소 중 지정한 부모 전까지(==미만)</button>
+  <button id="btn4">p요소의 부모요소 중 가장 가까운(자신 포함)</button>
+  <button id="reset">reset</button>
+</body>
+</html>
