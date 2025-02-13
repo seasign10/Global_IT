@@ -9,14 +9,18 @@ a {text-decoration: none; color: #3a3a3a !important;}
 ul, ol {list-style: none;}
 
 /* nav */
-nav.navbar {position: fixed;top: 0; height: 80px; width: 100%; z-index: 100;background-color: #fff !important;}
+nav.navbar {position: fixed;top: 0; height: 80px; width: 100%; z-index: 100; transition: all 0.5s;}
+nav.nav-back1 {background-color: #ffffff00 !important;}
+nav.nav-back2 {background-color: #ffffff !important;}
 nav .navbar-collapse { justify-content: flex-end;}
-nav .navbar-nav {background-color: white;}
+nav .navbar-nav {background-color: rgba(255, 255, 255, 0);}
 nav .nav-item {font-weight: bold;transition: color 1s, background-color 1s;}
 nav .nav-item:hover {color: #00b0fb67;}
 nav .navbar-light .navbar-nav a.nav-link {color: black !important;}
 nav .navbar-nav>li:last-child {background-color: #00b0fb; text-align: center;border-radius: 4px;}
-nav.navbar-light ul.navbar-nav li:not(:last-child) a {color: black !important; transition: color 0.5s;}
+nav.navbar-light ul.navbar-nav li:not(:last-child) a {transition: color 0.5s;}
+nav.navbar-light ul.navbar-nav li:not(:last-child) a.nav-text1{color: white !important;}
+nav.navbar-light ul.navbar-nav li:not(:last-child) a.nav-text2{color: black !important;}
 nav.navbar-light ul.navbar-nav li:not(:last-child):hover a {color: rgb(110, 110, 110) !important;}
 nav .nav-link {padding: 6px 2rem !important;}
 /* main */
@@ -26,6 +30,8 @@ nav .nav-link {padding: 6px 2rem !important;}
   position: relative;
   background: url("../img/pc_title.jpg") no-repeat center/cover;
 }
+.navbar-brand img {transition: all 1s; position: absolute; top: 24px;left: 24px;}
+.navbar-brand img.hide {opacity: 0;}
 .main-title {
   position: absolute; 
   top: 50%; 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>text 250212 - 01</title>
+</head>
+<body>
+  <h1>IT도서등록</h1>
+  <form action="register.jsp" method="post">
+    <ul>
+      <li>제목</li>
+      <li>가격</li>
+      <li>출판사</li>
+      <li>
+        <label for="ebook">
+          <input type="radio" name="ebook" id="ebook">
+          ebook 제공
+        </label>
+        <label for="no_ebook">
+          <input type="radio" name="no_ebook" id="no_ebook">
+          ebook 제공 안함
+        </label>
+      </li>
+      <li>난이도 
+      <select name="level" id="level">
+        <option value="1">상</option>
+        <option value="2">중</option>
+        <option value="">하</option>
+      </select></li>
+      <li>
+        분류
+        <label for="backend">
+          <input type="checkbox" name="backend" id="">
+          백엔드
+        </label>
+        <label for="frontend">
+          <input type="checkbox" name="frontend" id="">
+          프론트엔드
+        </label>
+        <label for="language">
+          <input type="checkbox" name="language" id="">
+          프로그래밍언어
+        </label>
+        <label for="db">
+          <input type="checkbox" name="db" id="">
+          데이터베이스
+        </label>
+      </li>
+      <li>사진 <input type="file" name="file" id="file"></li>
+      <li>
+        <div>책설명</div>
+        <textarea name="content" id="content"></textarea>
+      </li>
+      <button>등록</button>
+      <button type="reset">취소</button>
+    </ul>
+  </form>
+</body>
+</html>
