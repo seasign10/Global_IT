@@ -76,3 +76,4 @@ prototype과 wireframe 중간, 정확한 기준이 X
 
 1. cliden의 적극적인 참여를 유도
 2. 의사결정을 초기에 함 :arrow_right: <u>차후 수정요구사항을 최소화</u>하는데 도움이 됨
+
