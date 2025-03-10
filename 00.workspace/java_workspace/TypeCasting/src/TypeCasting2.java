@@ -6,5 +6,4 @@ public class TypeCasting2 {
 		int b=5+(int)3.5; // 5+3(내림)
 		System.out.println(b);
 	}
-
 }

@@ -1,0 +1,116 @@
+import java.util.Scanner;
+
+public class HomeWork2 {
+
+	public static void main(String[] args) {
+		// 01. 생년월일 추출
+		String regidentNum = "010203-123456";
+		String[] birth = regidentNum.split("-");
+		for(int i=0;i<3;i++) {
+			System.out.print(birth[0].substring(i*2, i*2+2));
+			if(i==0) {
+				System.out.print("년 ");
+			}else if(i==1) {
+				System.out.print("월 ");				
+			}else {
+				System.out.print("일");								
+			}
+		}
+		System.out.println();
+		
+		// 02. - 제거
+		String phoneNum = "010-1234-5678";
+		String num = phoneNum.replace("-", "");
+		System.out.println(num);
+		
+		// 03. 상품코드(E20160001)에서 상품카테고리('E')를 추출
+		String goodsNum = "E20160001";
+		System.out.println(goodsNum.split("")[0]);
+		
+		
+		// 04. 상품코드(E20160001)에서 년도('2016')를 추출
+		int fitstIdx =  goodsNum.indexOf("E")+1;
+		int lastIdx = goodsNum.indexOf("E")+5;
+		System.out.println(goodsNum.substring(fitstIdx, lastIdx));
+		
+		// 05. 주소록 csv데이터에서 데이터를 분리
+		String userInfo = "홍길동,010-1111-2222,hkd@hkd.com";
+		for(String i:userInfo.split(",")) {
+			System.out.println(i);			
+		}
+		
+		// 06. 각 학번의 학과명을 출력
+		String[] studentId = {"EL201800001","CH201800021","EN12231"};
+		for(String i:studentId) {
+			if(i.subSequence(0, 2).equals("EL")) {
+				System.out.println(i+" : 전자공학과");
+			}else if(i.subSequence(0, 2).equals("CH")) {
+				System.out.println(i+" : 화학공학과");				
+			}else if(i.subSequence(0, 2).equals("EN")) {
+				System.out.println(i+" : 영어영문학과");								
+			}else {
+				System.out.println("학과가 존재하지 않습니다. 학사에 문의해주세요.");				
+			}
+		}
+		
+		// 07. '아이디에 !,@,#,$,%,^가 포함되면 안됩니다.' 출력
+		String id1 = "hello!";
+		String id2 = "welcome123";
+		String id3 = "bye^^";
+		
+		String[] ids = {id1, id2, id3};
+		boolean correctId;
+		
+		for(String i:ids) {
+			correctId = i.indexOf("!")>-1||i.indexOf("@")>-1||i.indexOf("#")>-1||i.indexOf("$")>-1||i.indexOf("%")>-1||i.indexOf("^")>-1;
+			if(correctId) {
+				System.out.println("아이디에 !,@,#,$,%,^가 포함되면 안됩니다.");
+			}else {
+				System.out.println("["+i+"]"+"는 사용할 수 있는 아이디입니다.");				
+			}
+		}
+		
+		// 08. 학번,이름,학과를 입력받아 배열에 넣고 출력
+		Scanner s = new Scanner(System.in);
+		String studentNum;
+		System.out.print("학번 : ");
+        studentNum=s.next();
+        
+        String studentName;
+        System.out.print("이름 : ");
+        studentName=s.next();
+
+        String department;
+        System.out.print("학과 : ");
+        department=s.next();
+        
+        String[] studentAuth = {studentNum, studentName, department};
+        
+        System.out.println("[학생 정보]");
+        System.out.print("[학번] "+studentNum);
+        System.out.print(" [이름] "+studentName);
+        System.out.println(" [학과] "+department);
+        
+        // 09. Student클래스를 만들고 instance를 생성해서 정보를 출력
+        Student a = new Student();
+        a.showinfo();        
+	}
+}
+class Student {
+	Scanner s=new Scanner(System.in);
+	String no;
+	String name;
+	String department;
+
+	void showinfo() {
+		System.out.print("학번 : ");
+	     no = s.next();
+	     System.out.print("이름 : ");
+	     name = s.next();
+	     System.out.print("학과 : ");
+	     department = s.next();
+		System.out.println("학번 ["+no+"]");
+		System.out.println("학번 ["+name+"]");
+		System.out.println("학번 ["+department+"]");
+	}
+}
