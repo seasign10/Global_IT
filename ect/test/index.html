@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>carousel</title>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <style>
+    /* reset */
+    *{margin: 0;padding: 0;box-sizing: border-box;}
+    body{width: 100%;height: 100vh;overflow-x: hidden;}
+    h1{padding-top: 1rem;position: absolute;left: 50%;transform: translateX(-50%);}
+    .container{
+      width: 100%;
+      height: 100%;
+
+      /* 값이 클 수록 거리감도 커짐(원근을 줄 자식의 부모에게 속성 부여) */
+      perspective: 500px;
+      /* 자식요소에 perspective 모든 효과 상속 */
+      transform-style: preserve-3d;
+    }
+    .slide{
+      width: 200px;
+      height: 300px;
+      
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      background: #fafafa;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      
+      transition: all 0.5s;
+    }
+    .btn{display: flex;justify-content: center; position: relative;}
+    .btn button{top: -60px;}
+    .prev{position: absolute;left: 52%;}
+    .next{position: absolute;right: 52%;}
+
+    /* ========================== */
+    /* 1,2는 동일한 위치의 제일 끝 지점 위치 */
+    .slide:nth-of-type(1), .slide:nth-of-type(2){
+      transform:translate(calc(-50%*5.1),-50%) translateZ(-100px);
+    }
+    .slide:nth-of-type(3){
+      transform:translate(calc(-50%*3.1),-50%) translateZ(-50px);
+    }
+    .slide:nth-of-type(4){
+      transform:translate(calc(-50%*1.1),-50%) translateZ(50px);
+    }
+    .slide:nth-of-type(5){
+      transform:translate(calc(-50%*-0.9),-50%) translateZ(-50px);
+    }
+    /* 6,7도 위와 동일 */
+    .slide:nth-of-type(6), .slide:nth-of-type(7){
+      transform:translate(calc(-50%*-2.9),-50%) translateZ(-100px);
+    }
+  </style>
+</head>
+<body>
+  <h1>Carousel</h1>
+
+  <div class="container">
+    <div class="slide">1</div>
+    <div class="slide">2</div>
+    <div class="slide">3</div>
+    <div class="slide">4</div>
+    <div class="slide">5</div>
+    <div class="slide">6</div>
+    <div class="slide">7</div>
+  </div>
+  <div class="btn">
+    <button class="prev">prev</button>
+    <button class="next">next</button>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      const container = $('.container');
+      const prevBtn = $('.prev');
+      const nextBtn = $('.next');
+
+      prevBtn.on('click', function(){
+        const slides = $('.slide');
+
+        // 첫번째 자식 요소가 마지막으로 이동
+        container.append(slides[0]);
+      });
+      nextBtn.on('click', function(){
+        const slides = $('.slide');
+
+        // 마지막 자식 요소가 첫번째로 이동
+        container.prepend(slides[slides.length-1]);
+      });
+    });
+  </script>
+</body>
+</html>
