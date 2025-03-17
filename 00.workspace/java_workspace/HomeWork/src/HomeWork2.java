@@ -91,12 +91,12 @@ public class HomeWork2 {
         System.out.print(" [이름] "+studentName);
         System.out.println(" [학과] "+department);
         
-        // 09. Student클래스를 만들고 instance를 생성해서 정보를 출력
-        Student a = new Student();
+        // 09. student1클래스를 만들고 instance를 생성해서 정보를 출력
+        student1 a = new student1();
         a.showinfo();        
 	}
 }
-class Student {
+class student1 {
 	Scanner s=new Scanner(System.in);
 	String no;
 	String name;

@@ -50,7 +50,7 @@ public class HomeWork5 {
             System.out.println("[가격] " + book[3] + "(원)");
         }
 		System.out.println("ArrayList로 저장 됨."+books.size()+"개.");
-		System.out.println("======================================");
+		System.out.println("======================================01");
 		
 		// 02. 1번을 HashMap을 이용해서 저장하고 출력
 		Map<String, Book> hashBook=new HashMap<String,Book>();
@@ -68,13 +68,13 @@ public class HomeWork5 {
 			System.out.println("[가격] "+hashBook.get(k).price+"(원)");
 		}
 		System.out.println("HashMap으로 저장 됨. "+hashBook.size()+"개.");
-		System.out.println("======================================");
+		System.out.println("======================================02");
 		
 		// 03. 1번을 Book이라는 클래스로 만든 다음 ArrayList에 Book객체를 넣어서 처리
 		ArrayList<Book> bookList=new ArrayList<Book>();
 		bookList.add(new Book(title, author, publisher, price));
 		System.out.println("ArrayList(new Book)로 저장 됨. "+bookList.size()+"개.");
-		System.out.println("======================================");		
+		System.out.println("======================================03");		
 		
 		// 04. HashMap에 ArrayList<Book>을 넣어서 처리
 		// HashMap의 key는 "철학", "언어", "컴퓨터공학"
@@ -95,7 +95,7 @@ public class HomeWork5 {
 			}
 		}
 		System.out.println(" 총 "+hashArrayBook.size()+"개 입니다.");
-		System.out.println("======================================");		
+		System.out.println("======================================04");		
 	}
 
 }
