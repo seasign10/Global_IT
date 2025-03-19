@@ -1,0 +1,69 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
+
+class LogFile{
+	String msg;
+	
+	LogFile(){
+		msg=null;	
+	}
+	
+	void msg(Exception m) {
+		if(m.getMessage()!=null) {
+			msg=m.getMessage();
+		}else {
+			msg=m.toString();
+		}
+	}
+	
+	String getMsg() {
+        return msg; // 메시지를 반환하는 메서드 추가
+    }
+}
+
+public class FileExceptionLog {
+
+	public static void main(String[] args) {
+		try {
+			// 작동 코드(미리 오류를 생성하면 프로그램이 실행도 전에 try되지 않음)
+			Scanner s=new Scanner(System.in);
+			System.out.print("0을 입력하세요: ");
+            int b=s.nextInt(); // *double은 catch를 거치지 않고 Infinity 문자열을 반환
+            int res = 1 / b; // 예외 발생
+            System.out.println(res);
+            s.close();
+		}catch(Exception e) {
+			// error(exception) 발생
+			LogFile logFile=new LogFile();
+			logFile.msg(e);
+			
+			// 날짜 형식 지정
+			Date now = new Date(); // 현재 날짜와 시간
+	        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	        String dateString = formatter.format(now);
+	        
+			// 경로(path) 설정 및 객체 생성
+	        String logFilePath = "C:\\root\\log\\" + dateString + ".log";
+			File logOutputStreamWriter=new File(logFilePath);
+			
+			// 로그 디렉토리 확인 및 생성
+            File logDirectory = new File("C:\\root\\log");
+            if (!logDirectory.exists()) { // 디렉토리가 없다면
+                logDirectory.mkdirs(); // 디렉토리 생성
+            }
+			
+			// FileWriter 사용
+			try(Writer writer=new FileWriter(logOutputStreamWriter)){
+				writer.write(logFile.getMsg()); // 오류 메세지 출력								
+				writer.flush();
+			}catch(IOException error) {
+				System.out.println("로그 파일 작성 중 오류 발생: " + error.getMessage());
+			}
+		}
+	}
+}
