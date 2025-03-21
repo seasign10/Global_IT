@@ -2,50 +2,36 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class BaseBall{
-    ArrayList<Integer> resList=new ArrayList<>();
+    ArrayList<Integer> resList;
+    ArrayList<Integer> numList;
     int ballCnt;
     int strikeCnt;
+    int cnt;
+    int num;
+    
     BaseBall(){
         // 초기값
+    	resList=new ArrayList<>();
+    	numList=new ArrayList<>();
         ballCnt=0;
         strikeCnt=0;
-    }
-    void play(int num){
+        cnt=0;
+        num=0;
+        
         // 01. 정답 난수로 받기 (중복X)
-        int res=(int) (Math.floor(Math.random()*9+1)); // 1~9
-        if(resList.contains(res)) {
-            res=(int) (Math.floor(Math.random()*9+1)); // 1~9
-        }else {
-            resList.add(res);
-        }
-
-        // 1-1. 사용자 입력 값 num과 비교
-        System.out.println("com ["+res+"] | 사용자 ["+num+"]");
-        if(num!=res) { // 볼
-            System.out.println("**볼**");
-            ballCnt++;
-        }else { // 스트라이크
-            System.out.println("**스트라이크**");
-            strikeCnt++;
+        while(cnt<3) {
+        	int res=(int) (Math.floor(Math.random()*9+1)); // 1~9
+        	if(resList.contains(res)) {
+        		res=(int) (Math.floor(Math.random()*9+1)); // 1~9
+        	}else {
+        		// 중복되지 않을 때만 입력
+        		resList.add(res);
+        		++cnt;
+        	}        	
         }
     }
-    boolean result(){
-        System.out.println(ballCnt+"개의 볼, "+strikeCnt+"개의 스트라이크");
-        if(strikeCnt==3) {
-            System.out.println("3 스트라이크를 축하합니다!");
-            System.out.println("[게임이 종료되었습니다.]");
-            return false;
-        }else {
-            return true;
-        }
-    }
-
-}
-
-public class HomeWork7 {
-    static int num;
-    static ArrayList<Integer> numList=new ArrayList<>();
-    public static void check(Scanner scanner) {
+    
+    void check(Scanner scanner) {
         int i;
         while (true) {
             i = scanner.nextInt();
@@ -69,44 +55,93 @@ public class HomeWork7 {
             }
         }
     }
+    
+    void play(ArrayList<Integer> numList){
+        // 사용자 입력 값 num과 비교
+        for(int i=0;i<resList.size();i++) {
+        	if(numList.get(i)==resList.get(i)) {
+        		strikeCnt++;
+        	}else if(resList.contains(numList.get(i))) {
+        		ballCnt++;
+        	}
+        }
+    }
+    
+    boolean result(){
+    	System.out.print("사용자 입력 값: ");
+    	for(Integer i:numList) {
+    		System.out.print("["+i+"] ");    		
+    	}
+    	System.out.println();
+        System.out.println(ballCnt+"개의 볼, "+strikeCnt+"개의 스트라이크");
 
+        for(int i:resList) {
+        	System.out.println(i);
+        }
+        if(strikeCnt==3) {
+            System.out.println("3 스트라이크를 축하합니다!");
+            // 볼, 스트라이크 초기화
+            ballCnt=0;
+            strikeCnt=0;
+            return true;
+        }else {
+        	// 볼, 스트라이크 초기화
+        	ballCnt=0;
+        	strikeCnt=0;
+        	return false;
+        }
+    }
+
+}
+
+public class HomeWork7 {
     public static void main(String[] args) {
         boolean isGaming=true;
+        boolean isWin=false;
+        String answer = null;
+       
+        // 사용자 입력값
+        Scanner s=new Scanner(System.in);
+        // 컴퓨터 입력값
+        BaseBall baseBall=new BaseBall();
+        
         while(isGaming) {
-            // 사용자 입력값
-            Scanner s=new Scanner(System.in);
-            // 컴퓨터 입력값
-            BaseBall baseBall=new BaseBall();
-            while(true) {
-            	int cnt=baseBall.ballCnt+baseBall.strikeCnt+1;
-                System.out.print("1~9사이 "+cnt+"번째 번호 입력: ");
+        	// 다시 입력 시, 사용자 입력값 초기화
+        	baseBall.numList.clear();
+        	
+        	// 사용자 값 입력
+            int cntNum=1;
+            while(cntNum<=3) {
+                System.out.print("1~9사이 "+cntNum+"번째 번호 입력: ");
                 // 유효성 검사
-                check(s);
-                baseBall.play(num);
-                if(baseBall.ballCnt+baseBall.strikeCnt==3) break;
+                baseBall.check(s);
+                ++cntNum;
             }
-            isGaming=baseBall.result(); // true
-            String answer;
-            if(isGaming) {
-                System.out.println("[한 번더 도전하겠습니까?] (Y/N)");
-                answer=s.next();
-                if(answer.equals("Y")){
-                    // 재 시작시, 사용자의 값을 초기화
-                    numList.removeAll(numList);
-                    continue;
-                }else if(answer.equals("N")) {
-                    System.out.println("[게임이 종료되었습니다.]");
-                    isGaming=false;
-                    s.close(); // 자원 회수
-                    break;
-                }else {
-                    System.out.println("[한 번더 도전하겠습니까?] (Y/N)");
-                    answer=s.next();
+            
+            // 볼, 스트라이크 갯수 체크
+            baseBall.play(baseBall.numList);
+            
+            // 결과
+            isWin=baseBall.result();
+            
+            if(isWin) {
+                while(true) {
+                	System.out.println("[한 번더 도전하겠습니까?] (Y/N)");
+                	answer=s.next();
+                	if(answer.equals("Y")){
+                		// 새 게임 시작시, 새 객체로 새 난수 생성
+                		baseBall=new BaseBall();
+                		break;
+                	}else if(answer.equals("N")) {
+                		System.out.println("[게임이 종료되었습니다.]");
+                		isGaming=false;
+                		isWin=false;
+                		s.close(); // 자원 회수
+                		break;
+                	}else {
+                		System.out.println("[잘못된 입력입니다. Y 또는 N을 입력하세요.]");
+                	}	
                 }
-            }else{ // 스트라이크 3개였을 때
-                isGaming=false;
-                s.close(); // 자원 회수
-                break;
             }
         }
     }
