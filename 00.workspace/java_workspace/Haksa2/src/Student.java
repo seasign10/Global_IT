@@ -66,16 +66,17 @@ public class Student extends JPanel{
 					Statement stmt=conn.createStatement();
 					
 					// select
-					ResultSet rs=stmt.executeQuery("select * from student2 where name='"+txtName.getText()+"'");
+					ResultSet rs=stmt.executeQuery("select * from studentHaksa where name='"+txtName.getText()+"'");
 					
 					// JTaable 초기화
 					model.setNumRows(0); // model의 행의 수를 0으로 설정(초기화)
 					
 					while(rs.next()) {
-						String[] row=new String[3];
+						String[] row=new String[4];
 						row[0]=rs.getString("id");
 						row[1]=rs.getString("name");
 						row[2]=rs.getString("dept");
+						row[3]=rs.getString("address");
 						model.addRow(row); // 모델에 추가
 					}
 					rs.close();
@@ -95,7 +96,7 @@ public class Student extends JPanel{
 		this.txtAddress=new JTextField(20);
 		this.add(this.txtAddress);
 		
-		String[] colname= {"학번","이름","학과"};//컬럼명
+		String[] colname= {"학번","이름","학과","주소"};//컬럼명
 		this.model=new DefaultTableModel(colname,0);//모델생성
 		this.table=new JTable(model);//table에 model 바인딩
 		this.table.setPreferredScrollableViewportSize(new Dimension(250,270));
@@ -110,7 +111,7 @@ public class Student extends JPanel{
 				txtId.setText((String)model.getValueAt(table.getSelectedRow(), 0));
 				txtName.setText((String)model.getValueAt(table.getSelectedRow(), 1));
 				txtDept.setText((String)model.getValueAt(table.getSelectedRow(), 2));
-				
+				txtAddress.setText((String)model.getValueAt(table.getSelectedRow(), 3));				
 			}
 
 			@Override
@@ -138,7 +139,7 @@ public class Student extends JPanel{
 					//statement객체생성
 					Statement stmt=conn.createStatement();
 					//insert
-					stmt.executeUpdate("insert into student2 values('"+txtId.getText()+"','"+txtName.getText()+"','"+txtDept.getText()+"')");
+					stmt.executeUpdate("insert into studentHaksa values('"+txtId.getText()+"','"+txtName.getText()+"','"+txtDept.getText()+"','"+txtAddress.getText()+"')");
 
 					stmt.close();
 					conn.close();
@@ -178,7 +179,7 @@ public class Student extends JPanel{
 					//statement객체생성
 					Statement stmt=conn.createStatement();
 					
-					stmt.executeUpdate("update student2 set name='"+txtName.getText()+"',dept='"+txtDept.getText()+"' where id='"+txtId.getText()+"'");
+					stmt.executeUpdate("update studentHaksa set name='"+txtName.getText()+"',dept='"+txtDept.getText()+"' where id='"+txtId.getText()+"'");
 					
 					stmt.close();
 					conn.close();
@@ -205,7 +206,7 @@ public class Student extends JPanel{
 					System.out.println("연결완료");
 					//statement객체생성
 					stmt=conn.createStatement();						
-					ResultSet rs = stmt.executeQuery("select * from student2 where id='" + txtId.getText() + "'");
+					ResultSet rs = stmt.executeQuery("select * from studentHaksa where id='" + txtId.getText() + "'");
 					// 입력된 id가 존재하지 않으면
 					if(!rs.next()) {
 						JOptionPane.showMessageDialog(null, "올바른 아이디를 입력해주세요.", "알림", JOptionPane.INFORMATION_MESSAGE);
@@ -221,7 +222,7 @@ public class Student extends JPanel{
 				if(result==JOptionPane.YES_OPTION) {
 					try {
 						//delete
-						stmt.executeUpdate("delete from student2 where id='"+txtId.getText()+"'");
+						stmt.executeUpdate("delete from studentHaksa where id='"+txtId.getText()+"'");
 						
 						stmt.close();
 						conn.close();
@@ -254,15 +255,16 @@ public class Student extends JPanel{
 			//statement객체생성
 			Statement stmt=conn.createStatement();					
 			//select
-			ResultSet rs=stmt.executeQuery("select * from student2");
+			ResultSet rs=stmt.executeQuery("select * from studentHaksa");
 			//JTable초기화
 			model.setNumRows(0);// model의 행의수를 0으로 설정
 			
 			while(rs.next()) {
-				String[] row=new String[3]; //행
+				String[] row=new String[4]; //행
 				row[0]=rs.getString("id");
 				row[1]=rs.getString("name");
 				row[2]=rs.getString("dept");
+				row[3]=rs.getString("address");
 				model.addRow(row); //모델에 추가
 				
 				
@@ -279,5 +281,6 @@ public class Student extends JPanel{
 		this.txtId.setText("");
 		this.txtName.setText("");
 		this.txtDept.setText("");
+		this.txtAddress.setText("");
 	}
 }
