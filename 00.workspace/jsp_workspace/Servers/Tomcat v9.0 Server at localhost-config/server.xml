@@ -162,7 +162,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="HelloWord" path="/HelloWord" reloadable="true" source="org.eclipse.jst.jee.server:HelloWord"/><Context docBase="HelloWorld2" path="/HelloWorld2" reloadable="true" source="org.eclipse.jst.jee.server:HelloWorld2"/><Context docBase="myapp" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:myapp"/><Context docBase="Member" path="/Member" reloadable="true" source="org.eclipse.jst.jee.server:Member"/><Context docBase="Board" path="/Board" reloadable="true" source="org.eclipse.jst.jee.server:Board"/></Host>
+      <Context docBase="HelloWord" path="/HelloWord" reloadable="true" source="org.eclipse.jst.jee.server:HelloWord"/><Context docBase="HelloWorld2" path="/HelloWorld2" reloadable="true" source="org.eclipse.jst.jee.server:HelloWorld2"/><Context docBase="myapp" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:myapp"/><Context docBase="Member" path="/Member" reloadable="true" source="org.eclipse.jst.jee.server:Member"/><Context docBase="Board" path="/Board" reloadable="true" source="org.eclipse.jst.jee.server:Board"/><Context docBase="Diary" path="/Diary" reloadable="true" source="org.eclipse.jst.jee.server:Diary"/></Host>
     </Engine>
   </Service>
 </Server>
