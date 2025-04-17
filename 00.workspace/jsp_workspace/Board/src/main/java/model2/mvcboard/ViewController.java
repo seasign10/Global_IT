@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,8 +33,28 @@ public class ViewController extends HttpServlet {
 		// 게시물 불러오기
         MVCBoardDAO dao = new MVCBoardDAO();
         String idx = req.getParameter("idx");
-        dao.updateVisitCount(idx);  // 조회수 1 증가
         MVCBoardDTO dto = dao.selectView(idx);
+        
+        // 게시물 조회 이력 체크 및 조회수 증가
+        boolean isVisited=false; // 방문 이력
+        String cookieName = "visited_" + idx; // 방문한 게시글의 쿠키이름
+        Cookie[] cookies = req.getCookies();
+        if(cookies!=null) {
+        	for(Cookie cookie:cookies) {
+        		if(cookie.getName().equals(cookieName)) { // 이미 쿠키값이 있으면
+        			isVisited=true;
+        			break;
+        		}
+        	}
+        }
+        if(!isVisited) {
+        	dao.updateVisitCount(idx);  // 조회수 1 증가
+        	Cookie newcookie=new Cookie(cookieName, "true");
+        	newcookie.setMaxAge(60*60*24); // 하루동안 유지
+        	newcookie.setPath("/"); // 모든 경로에서 접속 허용
+        	resp.addCookie(newcookie);
+        }
+
         dao.close();
 
         // 줄바꿈 처리
@@ -58,7 +79,8 @@ public class ViewController extends HttpServlet {
         // 게시물(dto) 저장 후 뷰로 포워드
         req.setAttribute("dto", dto);
         req.setAttribute("isImage", isImage);
-        req.getRequestDispatcher("/14MVCBoard/View.jsp").forward(req, resp);	}
+        req.getRequestDispatcher("/14MVCBoard/View.jsp").forward(req, resp);
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
