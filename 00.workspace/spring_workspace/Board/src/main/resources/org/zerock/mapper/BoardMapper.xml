@@ -3,26 +3,95 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.BoardMapper">
+
+	<sql id="criteria">
+		<!-- 검색조건. trim은 앞뒤의 공백을 뺌. prefixOverrides에서 or를 설정함으로써 첫째줄이 아닌 구문에 or이 붙음 -->
+		<trim prefix="(" suffix=") and " prefixOverrides="or">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="or">
+					<choose>
+						<when test="type=='T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='TC'.toString()">
+							( title like '%' || #{keyword} || '%' or content like '%' || #{keyword} || '%' )
+						</when>
+						<when test="type=='W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
 	<![CDATA[
-		select * from tbl_board where bno>0 order by bno desc
-	]]>	
+		select bno, title, content, writer, regdate, updatedate, replycnt 
+		from tbl_board
+  		where bno > 0 order by bno desc
+		]]>
 	</select>
-	
+
 	<insert id="insert">
-		insert into tbl_board(bno,title,content,writer)
-		values(seq_board.nexval,#{title},#{content},#{writer})
+		insert into tbl_board (bno,title,content,writer)
+		values (seq_board.nextval, #{title}, #{content}, #{writer})
 	</insert>
+
 	<insert id="insertSelectKey">
 		<!-- bno값을 먼저 구한 다음 BoardVO안의 bno에 넣는다 -->
-		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
-		select seq_board.nextval from dual
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
 		</selectKey>
-		insert into tbl_board(bno,title,content,writer)
-		values(#{bno},#{title},#{content},#{writer})
+
+		insert into tbl_board (bno,title,content, writer)
+		values (#{bno},
+		#{title}, #{content}, #{writer})
 	</insert>
-	
+
 	<select id="read" resultType="org.zerock.domain.BoardVO">
-		select * from tbl_board where bno=#{bno}
+		select * from tbl_board where bno = #{bno}
 	</select>
+
+	<delete id="delete">
+		delete tbl_board where bno = #{bno}
+	</delete>
+
+	<update id="update">
+		update tbl_board set title= #{title}, content=#{content}, writer = #{writer}, updateDate = sysdate 
+		where bno = #{bno}
+	</update>
+
+	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
+		<![CDATA[
+		select bno,title,content,writer,regdate,updatedate,replycnt
+		from (
+			select /*+index_desc(tbl_board pk_board) */
+				rownum rn,bno,title,content,writer,regdate,updatedate,replycnt
+			from tbl_board
+			where
+		]]>
+					
+		<include refid="criteria"></include> <!-- 검색 시 필요 -->			
+				
+		<![CDATA[
+			rownum <= #{pageNum} * #{amount}
+			)
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from tbl_board where 
+		<include refid="criteria"></include> <!-- 검색 시 필요 -->
+		bno > 0
+	</select>
+	
+	<update id="updateReplyCnt">
+		update tbl_board set replycnt=replycnt+#{amount} where bno=#{bno}
+	</update>
 </mapper>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    //즉시 실행 함수. 익명함수를 이용해서 정의하자마자 실행.
+    //함수의 이름이 없으므로 배포시 함수의 이름이 같아서 충돌될 일이 없음
+    (function(){
+      console.log('즉시 실행 함수')
+    })();
+
+    (function(){
+      return "리턴값";
+    })();
+    //즉시 실행 함수는 return값을 받을 수 없다.
+
+    let result1=(function(){
+      return "리턴값";
+    })();
+    console.log(result1);
+    
+    let result2=(function(){
+      return {name:'홍길동', age:20};
+    })();
+    console.log(result2.name);
+    console.log(result2.age);
+    
+    let result3={name:'홍길동', age:20};
+
+
+
+  </script>
+</head>
+<body>
+</body>
+</html>

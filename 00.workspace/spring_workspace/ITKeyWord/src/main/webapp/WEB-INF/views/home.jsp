@@ -6,6 +6,6 @@
 	<title>Home</title>
 </head>
 <body>
-	<a href="/keyword/addKeyWord">IT용어집</a>
+	<a href="/it/keyword/list">IT용어집</a>
 </body>
 </html>

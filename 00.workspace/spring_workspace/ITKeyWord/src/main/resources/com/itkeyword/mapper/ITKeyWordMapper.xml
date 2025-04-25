@@ -1,1 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itkeyword.mapper.ITKeyWordMapper">
+	<sql id="criteria">
+		<!-- 검색조건. trim은 앞뒤의 공백을 뺌. prefixOverrides에서 or를 설정함으로써 첫째줄이 아닌 구문에 or이 붙음 -->
+		<trim prefix="(" suffix=") and " prefixOverrides="or">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="or">
+					<choose>
+						<when test="type=='T'.toString()">
+							keyword like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							description like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='TC'.toString()">
+							( keyword like '%' || #{keyword} || '%' or description like '%' || #{keyword} || '%' )
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getList" resultType="com.itkeyword.domain.ITKeyWordVO">
+	<![CDATA[
+		select * from itkeyword where no>0 order by no desc 
+		]]>
+	</select>
+
+	<insert id="insert">
+		insert into itkeyword (no,keyword,description)
+		values (seq_board.nextval, #{keyword}, #{description}
+	</insert>
+
+	<insert id="insertSelectKey">
+		<!-- no값을 먼저 구한 다음 BoardVO안의 no에 넣는다 -->
+		<selectKey keyProperty="no" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+
+		insert into itkeyword (no,keyword,description)
+		values (#{no},
+		#{keyword}, #{description})
+	</insert>
+
+	<select id="read" resultType="com.itkeyword.domain.ITKeyWordVO">
+		select * from itkeyword where no = #{no}
+	</select>
+
+	<delete id="delete">
+		delete itkeyword where no = #{no}
+	</delete>
+
+	<update id="update">
+		update itkeyword set keyword= #{keyword}, description=#{description}
+		where no = #{no}
+	</update>
+
+	<select id="getListWithPaging" resultType="com.itkeyword.domain.ITKeyWordVO">
+		<![CDATA[
+		select no,keyword,description,regdate
+		from (
+		    select /*+index_desc(itkeyword pk_board) */
+		        rownum rn,no,keyword,description,regdate
+		    from (
+		        select * from itkeyword
+		        where
+		]]>
+		        <include refid="criteria"/>
+		<![CDATA[
+		        no > 0
+		        order by no desc
+		    )
+		    where rownum <= #{pageNum} * #{amount}
+		)
+		where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from itkeyword where 
+		
+		<include refid="criteria"></include> <!-- 검색 시 필요 -->
+		
+		no > 0
+		
+	</select>
+</mapper>
