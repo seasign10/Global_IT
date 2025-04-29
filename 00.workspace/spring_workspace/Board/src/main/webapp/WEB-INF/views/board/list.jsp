@@ -143,7 +143,6 @@
 	</div>
 	<!-- end panel -->
 </div>
-</div>
 <!-- /.row -->
 
 
@@ -153,6 +152,20 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		// 페이지 뒤로가기를 감지해서 세션에 저장된 path 불러옴
+		window.onpageshow = function(event) {
+		  if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+		    const savedSearch = sessionStorage.getItem('board_cri');
+		    if (savedSearch) {
+		    	location.href = '/board/list' + savedSearch;
+		    }
+		  }
+		};
+		
+		// list에서 path를 세션값으로 저장
+		if (window.location.pathname.includes('/board/list')) {
+		    sessionStorage.setItem('board_cri', location.search);
+		}
 
 		var result = '<c:out value="${result}"/>';
 		checkModal(result);
