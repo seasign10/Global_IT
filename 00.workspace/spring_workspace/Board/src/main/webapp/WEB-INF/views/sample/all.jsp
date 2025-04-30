@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>   
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/board/list">게시판</a>
-	<a href="/uploadForm">파일업로드 테스트</a>
-	<a href="/uploadAjax">파일업로드</a>
+	<h1>All</h1>
 	
 	<sec:authorize access="isAnonymous()">
 		<a href="/customLogin">로그인</a>

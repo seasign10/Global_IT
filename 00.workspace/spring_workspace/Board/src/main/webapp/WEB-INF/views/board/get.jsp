@@ -4,6 +4,57 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp"%>
 
+<style>
+	.uploadResult {
+	  width:100%;
+	  background-color: gray;
+	}
+	.uploadResult ul{
+	  display:flex;
+	  flex-flow: row;
+	  justify-content: center;
+	  align-items: center;
+	}
+	.uploadResult ul li {
+	  list-style: none;
+	  padding: 10px;
+	  align-content: center;
+	  text-align: center;
+	  cursor:pointer;
+	}
+	.uploadResult ul li img{
+	  width: 100px;
+	}
+	.uploadResult ul li span {
+	  color:white;
+	}
+	.bigPictureWrapper {
+	  position: fixed;
+	  display: none;
+	  justify-content: center;
+	  align-items: center;
+	  top:0%;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: 100vw;
+	  height:100%;
+	  background-color: gray; 
+	  z-index: 1000;
+	  background:rgba(255,255,255,0.5);
+	}
+	.bigPicture {
+	  position: relative;
+	  display:flex;
+	  justify-content: center;
+	  align-items: center;
+	}
+	
+	.bigPicture img {
+	  width:600px;
+	}
+</style>
+
+
 	<div class="row">
 	  <div class="col-lg-12">
 	    <h1 class="page-header">Board Read</h1>
@@ -40,11 +91,31 @@
 	          <label>Writer</label> <input class="form-control" name='writer'
 	            value='<c:out value="${board.writer }"/>' readonly="readonly">
 	        </div>
+	        
+	        <c:if test=""></c:if>
+    		<!-- 썸네일 출력 -->
+			<div class="row">
+			  <div class="col-lg-12">
+			    <div class="panel panel-default">
+			      <div class="panel-heading">Files</div>
+			      <!-- /.panel-heading -->
+			      <div class="panel-body">
+			        <div class='uploadResult'> 
+			          <ul></ul>
+			        </div>
+			      </div>
+			      <!--  end panel-body -->
+			    </div>
+			    <!--  end panel-body -->
+			  </div>
+			  <!-- end panel -->
+			</div>
+			<!-- /.row -->
 	
 			<button data-oper='modify' class="btn btn-default">Modify</button>
 			<button data-oper='list' class="btn btn-info">List</button>
 			
-			<form id='operForm' action="/boad/modify" method="get">
+			<form id='operForm' action="/board/modify" method="get">
 			  <input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
 			  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 			  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
@@ -87,7 +158,7 @@
 		</div>
 	</div>
 	
-	<!-- Modal -->
+	<!-- 댓글 Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -112,25 +183,6 @@
             </div>
             
 			<div class="modal-footer">
-				<!-- 첨부파일 -->
-				<div class="row">
-				  <div class="col-lg-12">
-				    <div class="panel panel-default">	
-				      <div class="panel-heading">Files</div>
-				      <!-- /.panel-heading -->
-				      <div class="panel-body">
-				        <div class='uploadResult'> 
-				          <ul></ul>
-				        </div>
-				      </div>
-				      <!--  end panel-body -->
-				    </div>
-				    <!--  end panel-body -->
-				  </div>
-				  <!-- end panel -->
-				</div>
-				<!-- /.row -->
-				
 				<!-- 버튼 -->
 		        <button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
 		        <button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
@@ -148,32 +200,33 @@
 
 <script>
 	$(document).ready(function(){
-		var bnoValue='<c:out value="${board.bno}"/>' // 부모글 번호
+		var bnoValue='<c:out value="${board.bno}"/>'; // 부모글 번호
 		
 		/* 첨부파일 목록 */
 		$.getJSON('/board/getAttachList', {bno:bnoValue}, function(arr){
 			var str='';
 			$(arr).each(function(i,attach){
 				 //image type
-		         if(attach.fileType){
+		         if(attach.fileType){ //이미지 파일이면
 		           var fileCallPath =  encodeURIComponent( attach.uploadPath+ "/s_"+attach.uuid +"_"+attach.fileName);
 		           
 		           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+		           str += "<span> "+ attach.fileName+"</span><br/>";
 		           str += "<img src='/display?fileName="+fileCallPath+"'>";
 		           str += "</div>";
-		           str +"</li>";
+		           str += "</li>";
 		         }else{
 		             
 		           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 		           str += "<span> "+ attach.fileName+"</span><br/>";
 		           str += "<img src='/resources/img/attach.png'></a>";
 		           str += "</div>";
-		           str +"</li>";
+		           str +="</li>";
 		         }
+		      	  // 썸네일 목록을 본문 영역에 출력
+		         $(".uploadResult ul").html(str);
 		       });
 			});
-		});
-	
 		/* 이벤트 처리 */
 		$(".uploadResult").on("click","li", function(e){
 		    console.log("view image");
@@ -193,7 +246,7 @@
 		  	$(".bigPicture")
 		    .html("<img src='/display?fileName="+fileCallPath+"' >")
 		    .animate({width:'100%', height: '100%'}, 1000);
-	    }
+	    };
 		
 		$(".bigPictureWrapper").on("click", function(e){
 		  	$(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
@@ -361,6 +414,7 @@
      	  });
      	});
 	});
+	
 </script>
 
 <script type="text/javascript">

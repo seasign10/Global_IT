@@ -1,5 +1,8 @@
 package org.zerock.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -50,8 +53,9 @@ public class BoardController {
 	//등록
 	@PostMapping("/register")
 	public String register(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.info("=====================");
-	    log.info("register: " + board);
+		/*
+		 * log.info("====================="); log.info("register: " + board);
+		 */
 		
 		service.register(board);
 		rttr.addFlashAttribute("result", board.getBno());
@@ -83,14 +87,39 @@ public class BoardController {
 	//삭제
 	@PostMapping("/remove")
 	public String remove(Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		if(service.remove(bno)) {
+		//첨부파일목록
+		List<BoardAttachVO> attachList=service.getAttachList(bno);
+		
+		if(service.remove(bno)) { // 부모글 삭제 성공했다면
+			//첨부파일목록삭제
+			deleteFiles(attachList);
 			rttr.addFlashAttribute("result", "success");
 		}
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword", cri.getKeyword());
-		return "redirect:/board/list";
+		/*
+		 * rttr.addAttribute("pageNum", cri.getPageNum()); 
+		 * rttr.addAttribute("amount",cri.getAmount()); 
+		 * rttr.addAttribute("type", cri.getType());
+		 * rttr.addAttribute("keyword", cri.getKeyword());
+		 */		
+		
+		return "redirect:/board/list"+cri.getListLink();
+	}
+	
+	//첨부파일삭제 (외부에서 사용할 일 없으므로 private)
+	private void deleteFiles(List<BoardAttachVO> attachList) {
+		//첨부파일이 없으면 종료
+		if(attachList==null || attachList.size()==0){return;}
+		
+		attachList.forEach(attach->{
+			try {
+				Path file=Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\"+attach.getUuid()+"_"+attach.getFileName());
+				if(attach.isFileType()==true) { // 이미지 파일이면 썸네일까지 삭제
+					Path sfile=Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\s_"+attach.getUuid()+"_"+attach.getFileName());					
+					Files.deleteIfExists(sfile); // 썸네일 삭제					
+				}
+				Files.deleteIfExists(file); // 파일 삭제
+			}catch(Exception e) {e.printStackTrace();}
+		});
 	}
 	
 	//첨부파일목록
