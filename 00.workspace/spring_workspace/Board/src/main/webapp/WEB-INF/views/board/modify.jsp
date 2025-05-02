@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>    
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@include file="../includes/header.jsp"%>  
  
@@ -73,6 +74,9 @@
                         <div class="panel-body">
                            	
                            	<form action="/board/modify" method="post">
+                           	
+                           		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>  
+                           	
 	                        	<div class="form-group">
 								    <label>bno</label>
 								    <input class="form-control" name="bno" value="<c:out value='${ board.bno }'/>" readonly />
@@ -126,10 +130,18 @@
 								</div>
 								<!-- /.row -->
 									
-								<!-- 버튼 -->
-	                        	<button data-oper="modify" class="btn btn-warning">Modify</button>
-	                        	<button data-oper="remove" class="btn btn-danger">Remove</button>
-	                        	<button data-oper="list" class="btn btn-default">List</button>
+								<!-- principal을 pinfo변수에 저장 -->
+								<sec:authentication property="principal" var="pinfo"/>
+								<!-- 로그인이 되어있고, 로그인아이디와 작성자가 같을 때 수정.삭제 버튼 출력 -->
+								<sec:authorize access="isAuthenticated()">>
+									<c:if test="${ pinfo.username eq board.writer }">
+										<!-- 버튼 -->
+			                        	<button data-oper="modify" class="btn btn-warning">Modify</button>
+			                        	<button data-oper="remove" class="btn btn-danger">Remove</button>
+			                        	<button data-oper="list" class="btn btn-default">List</button>
+									</c:if>
+								</sec:authorize>
+								
                            	</form>
 
                         </div>
@@ -142,6 +154,11 @@
             
             <script>
             	$(document).ready(function(){
+            		/* csrf토큰 처리 *****************************************************************/
+            		var csrfHeaderName ="${_csrf.headerName}"; 
+            	    var csrfTokenValue="${_csrf.token}";
+            	    /* post,delete,put에만 넣어야 함 */
+            		
             		var bno = '<c:out value="${board.bno}"/>';
             		
             		/* 첨부파일 목록 */
@@ -221,8 +238,12 @@
             		    $.ajax({
 	            		    url: '/uploadAjaxAction',
 	            		    processData: false, 
-	            		    contentType: false,data: 
-	            		    formData,type: 'POST',
+	            		    contentType: false,
+	            		    data: formData,
+	            		    type: 'POST',
+	            		    beforeSend: function(xhr) { // csrf적용
+	      			          xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	      			      	},
 	            		    dataType:'json',
 	            		    success: function(result){
 	            		        console.log(result); 
@@ -304,6 +325,9 @@
             		                $.ajax({
             		                    url: '/deleteFile',
             		                    data: { fileName: file.fileName, type: file.type },
+            		                    beforeSend: function(xhr) { // csrf적용
+            		  			          xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+            		  			      	},
             		                    dataType: 'text',
             		                    type: 'POST',
             		                    async: false  // 동기 처리 권장 (삭제 완료 보장)
