@@ -51,31 +51,27 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public BoardDTO get(Long bno) {
-
         Object result = repository.getBoardByBno(bno);
-
         Object[] arr = (Object[])result;
-
         return entityToDTO((Board)arr[0], (Member)arr[1], (Long)arr[2]);
     }
 
-//    @Transactional
-//    @Override
-//    public void removeWithReplies(Long bno) {
-//        //댓글 부터 삭제
-//        replyRepository.deleteByBno(bno);
-//
-//        repository.deleteById(bno);
-//    }
+    @Transactional
+    @Override
+    public void removeWithReplies(Long bno) {
+        //댓글 부터 삭제
+        replyRepository.deleteByBno(bno);
 
-//    @Transactional
-//    @Override
-//    public void modify(BoardDTO boardDTO) {
-//        Board board = repository.getReferenceById(boardDTO.getBno());
-//        if(board != null) {
-//            board.changeTitle(boardDTO.getTitle());
-//            board.changeContent(boardDTO.getContent());
-//            repository.save(board);
-//        }
-//    }
+        repository.deleteById(bno);
+    }
+
+    @Override
+    public void modify(BoardDTO boardDTO) {
+        Board board = repository.getReferenceById(boardDTO.getBno());
+        if(board != null) {
+            board.changeTitle(boardDTO.getTitle());
+            board.changeContent(boardDTO.getContent());
+            repository.save(board);
+        }
+    }
 }
