@@ -1,6 +1,8 @@
 package org.zerock.board.service;
 
+import org.zerock.board.dto.PageRequestDTO;
 import org.zerock.board.dto.ReplyDTO;
+import org.zerock.board.dto.ReplyPageDTO;
 import org.zerock.board.entity.Board;
 import org.zerock.board.entity.Reply;
 
@@ -15,6 +17,8 @@ public interface ReplyService {
     void modify(ReplyDTO replyDTO); //댓글 수정
 
     void remove(Long rno); //댓글 삭제
+
+    ReplyPageDTO getListOfBoard(Long bno, PageRequestDTO pageRequestDTO);
 
     //ReplyDTO를 Reply객체로 변환 Board객체의 처리가 수반됨
     default Reply dtoToEntity(ReplyDTO replyDTO){

@@ -37,6 +37,9 @@ dependencies {
 
 	// mariadb driver
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+	// https://mvnrepository.com/artifact/net.coobird/thumbnailator
+  implementation 'net.coobird:thumbnailator:0.4.19'
 }
 
 tasks.named('test') {
