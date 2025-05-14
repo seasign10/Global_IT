@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @jakarta.persistence.MappedSuperclass
 @EntityListeners(value = { AuditingEntityListener.class })
 @Getter
-abstract class BaseEntity {
+public abstract class BaseEntity {
 
     @CreatedDate
     @Column(name = "regdate", updatable = false)
