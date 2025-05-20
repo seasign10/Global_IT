@@ -15,9 +15,11 @@ import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.PageRequestDTO;
 import org.zerock.board.dto.PageResultDTO;
 import org.zerock.board.entity.*;
+import org.zerock.board.mapper.BoardMapper;
 import org.zerock.board.repository.BoardRepository;
 import org.zerock.board.repository.ReplyRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -28,6 +30,7 @@ public class BoardServiceImpl implements BoardService{
 
     private final BoardRepository repository;
     private final ReplyRepository replyRepository;
+    private final BoardMapper boardMapper; // MyBatis. Mapper 자동주입
 
     @Override
     public Long register(BoardDTO dto) {
@@ -73,5 +76,19 @@ public class BoardServiceImpl implements BoardService{
             board.changeContent(boardDTO.getContent());
             repository.save(board);
         }
+    }
+
+
+    // MyBatis
+    @Override
+    public List<BoardDTO> list2() {
+        return boardMapper.list2();
+    }
+    // DB가 같다면 ChainedTransaction 없이 jpa, mybatis 로 연게되어 처리한 작업이  rollback됨
+    @Transactional
+    @Override
+    public void deleteTest() {
+        replyRepository.deleteById(1L);
+        boardMapper.delete2();
     }
 }

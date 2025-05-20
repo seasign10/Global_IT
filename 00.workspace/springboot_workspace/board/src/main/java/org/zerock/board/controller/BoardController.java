@@ -69,4 +69,14 @@ public class BoardController {
         redirectAttributes.addAttribute("bno",dto.getBno());
         return "redirect:/board/read";
     }
+
+    //MyBatis
+    @GetMapping("/list2")
+    public void list2(Model model){
+        model.addAttribute("result", service.list2());
+    }
+    @GetMapping("/deleteTest")
+    public void deleteTest(){
+        service.deleteTest();
+    }
 }
