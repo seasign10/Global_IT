@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spread</title>
+  <script>
+    // 배열 전개
+    let arrA = [1, 2, 3];
+    let arrB = [...arrA, 4, 5, 6]; // arrA의 요소를 펼쳐서 arrB에 추가
+    let arrC = [arrA, 4, 5, 6]; // arrA를 배열로 감싸서 arrC에 추가
+    console.log(arrB); // [1, 2, 3, 4, 5, 6]
+    console.log(arrC); // [[1, 2, 3], 4, 5, 6]
+
+    // 객체 전개
+    let objA = { x: 1, y: 2 };
+    let objB = { ...objA, z: 3 }; // objA의 속성을 펼쳐서 objB에 추가
+    let objC = { objA, z: 3 }; // objA를 속성으로 감싸서 objC에 추가
+    console.log(objB); // { x: 1, y: 2, z: 3 }
+    console.log(objC); // { objA: { x: 1, y: 2 }, z: 3 }
+
+    // 함수호출시 스프레드 사용
+    function func(x, y, z) {
+      console.log(x, y, z);
+    }
+    let arr = [1, 2, 3];
+    func(...arr); // 1 2 3. arr의 요소를 펼쳐서 인자(parameter)로 전달
+
+    // rest매개변수. 가변길이 매개변수
+    function func2(...args) {
+      console.log(args);
+    }
+    func2(1, 2, 3, 4, 5, 6, 7); // [1, 2, 3, 4, 5, 6, 7]. parameter의 갯수가 정해져잇지 않음(유동배열)
+
+    // 나머지 매개변수와 전개 연산자
+    // 나머지 매개변수는 매개변수의 나머지 부분을 배열로 받음
+    function func3(param, ...rest) {
+      console.log(param); // 1
+      console.log(rest); // [2, 3, 4, 5, 6, 7]
+    }
+    func3(1, 2, 3, 4, 5, 6, 7); // param은 1, rest는 [2, 3, 4, 5, 6, 7]
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

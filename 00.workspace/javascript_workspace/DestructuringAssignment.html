@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구조분해할당</title>
+  <script>
+    // 배열 구조 분해 할당
+    const arr = [1, 2, 3];
+    // arr[0] = 1, arr[1] = 2, arr[2] = 3
+    // arr[0]을 a에, arr[1]을 b에, arr[2]를 c에 할당
+    const [a, b, c] = arr; // arr 배열을 구조분해 해서 item을 각각 a, b, c에 할당
+    console.log(a, b, c); // 1 2 3
+
+    // 객체 구조 분해 할당
+    const obj = { x: 1, y: 2 };
+    const { x, y } = obj;
+    console.log(x, y); // 1 2
+
+    // 기본값 설정
+    const [d = 4] = [];
+    console.log(d); // 4
+
+    // 나머지 매개변수
+    const [e, ...rest] = [1, 2, 3, 4];
+    console.log(e, rest); // 1 [2, 3, 4]
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

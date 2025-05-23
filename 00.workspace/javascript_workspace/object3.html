@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object</title>
+  <script>
+    let person={
+      name: "홍길동"
+    };
+    let man={
+      name: "홍길동"
+    };
+    console.log(person===man); // false. person과 man에 들어있는 참조값이 서로 다르므로 false
+    console.log(person==man); // false. person과 man에 들어있는 참조값이 서로 다르므로 false
+
+    // 참조 값은 객체에만 해당된다.
+    // 기본형은 값으로 비교한다.
+    let a="홍길동";
+    let b="홍길동";
+    console.log(a===b); // true. a와 b에 들어있는 값이 같으므로 true
+    console.log(a==b); // true. a와 b에 들어있는 값이 같으므로 true
+
+    let person1={
+      name:"홍길동", 
+      age:16, 
+      location:"서울",
+    };
+    
+    for(let key of Object.keys(person1)){
+      console.log(key, person1[key]); // key와 value를 출력
+    }
+
+    for(let key in person1){
+      console.log(key, person1[key]); // key와 value를 출력
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
