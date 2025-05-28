@@ -51,7 +51,7 @@ function App() {
 
   return <div className="App">
     <Header />
-    <Body name={name} location={location} />
+    {/* <Body name={name} location={location} /> */}
     {/* <Body name={name} location={location} favoriteList={bodyProps.favoriteList} /> */}
     <Body {...bodyProps} />
 
