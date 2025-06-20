@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  database:
+    container_name: maria_db
+    image: mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: bootex
+      MARIADB_USER: bootuser      
+      MARIADB_PASSWORD: bootuser
+      # MARIADB_ROOT_HOST: '%'
+      MARIADB_ROOT_PASSWORD: 1234
+      TZ: 'Asia/Seoul'
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./mariadb/conf.d:/etc/mysql/conf.d"
+      - "./mariadb/data:/var/lib/mysql"
+    command:      
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+
+  application:
+    container_name: docker-compose-test
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888" 
+    volumes:
+      - "./img:/img"    
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://maria_db:3306/bootex?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: "bootuser"
+      SPRING_DATASOURCE_PASSWORD: "bootuser"
+    depends_on:
+      - database
